@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" class="primary">
         <v-app>
             <v-app-bar
                 app
@@ -35,8 +35,9 @@
                     nudge-bottom="10"
                     v-for="(section, index1) in menuContent"
                     :key="index1"
+                    v-model="section.display"
                 >
-                    <template v-slot:activator="{ on, attrs}">
+                    <template v-slot:activator="{ on, attrs }">
                         <v-btn
                             class="hidden-sm-and-down mr-1"
                             text
@@ -55,8 +56,9 @@
                             v-for="(item, index2) in section.items"
                             :key="index2"
                             to="/about"
+                            :class="item.active"
                         >
-                            <v-list-item-title> {{ item }} </v-list-item-title>
+                            <v-list-item-title> {{ item.name }} </v-list-item-title>
                         </v-list-item>
                     </v-list>
                 </v-menu>
@@ -72,6 +74,7 @@
                     class="hidden-md-and-down"
                     @keydown="search"
                     @click:clear="search"
+                    autocomplete="off"
                 ></v-text-field>
 
                 <v-spacer></v-spacer>
@@ -101,25 +104,27 @@
                             offset="2"
                             align-self="center"
                         >
-                            <label class="text-sm-h3 white--text" style="display: block">Coding is freedom of design</label>
+                            <label class="text-sm-h2 white--text" style="display: block">Coding is a freedom</label>
                             <br>
-                            <label class="text-sm-h6 white--text" style="display: block">Learn to code today</label>
+                            <label class="text-sm-h6 white--text" style="display: block">Learn about this freedom of design</label>
                             <br>
                             <br>
                             <br>
                         </v-col>
                     </v-row>
                 </v-img>
-                <router-view/>
+                <span class="text-sm-caption">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
+                <router-view class="mt-4" />
             </v-main>
 
             <v-navigation-drawer
                 app
                 v-model="showSide"
-                absolute
+                v-resize="closeMenu"
                 temporary
                 right
                 dark
+                :width="windowWidth/3"
                 overlay-color="primary"
                 color="primary"
             >
@@ -132,16 +137,55 @@
                 </v-list>
 
                 <v-divider></v-divider>
-
                 <v-list
                     nav
+                    expand
                 >
-                    <v-list-item
-                    v-for="(section, index1) in menuContent"
-                    :key="index1"
-                    link
+                    <v-list-item>
+                        <v-text-field
+                            label="Search..."
+                            outlined
+                            clearable
+                            hide-details
+                            filled
+                            dense
+                            v-model="searchString"
+                            @keydown="search"
+                            @click:clear="search"
+                            autocomplete="off"
+                        ></v-text-field>
+                    </v-list-item>
+                    <v-list-group
+                        v-for="(section, index1) in menuContent"
+                        :key="index1"
+                        v-model="section.display"
+                        color="white"
+                        no-action
                     >
-                        <v-list-item-title> {{ section.name }} </v-list-item-title>
+                        <template v-slot:activator>
+                            <v-list-item>
+                                <v-list-item-title class="text--white">
+                                    {{ section.name }}
+                                </v-list-item-title>
+                            </v-list-item>
+                        </template>
+                        <v-list-item
+                            v-for="(item, index2) in section.items"
+                            :key="index2"
+                            to="/test"
+                            :class="item.active"
+                        >
+                            <v-list-item-title> {{ item.name }} </v-list-item-title>
+                        </v-list-item>
+                    </v-list-group>
+                    
+                    <v-list-item
+                        to="/test"
+                    >
+                        <v-list-item-title>
+                            Contact Us!
+                            <v-icon class="ml-2">mdi-account-supervisor</v-icon>
+                        </v-list-item-title>
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
@@ -160,15 +204,44 @@
             menuContent: [
                 {
                     name: "Python",
-                    items: ["Syntax"]
+                    items: [
+                        {
+                            name: "Syntax",
+                            active: ""
+                        }
+                    ],
+                    display: false,
+                    temporary: false
                 },
                 {
                     name: "Data Structures",
-                    items: ["Set", "Dictionary", "Linked List"]
+                    items: [
+                        {
+                            name: "Set",
+                            active: ""
+                        },
+                        {
+                            name: "Dictionary",
+                            active: ""
+                        },
+                        {
+                            name: "Linked List",
+                            active: ""
+                        }
+                    ],
+                    display: false,
+                    temporary: false
                 },
                 {
                     name: "Algorithms",
-                    items: ["Syntax"]
+                    items: [
+                        {
+                            name: "Syntax",
+                            active: ""
+                        }
+                    ],
+                    display: false,
+                    temporary: false
                 }
             ],
             searchString: ""
@@ -187,8 +260,37 @@
             },
             search: function() {
                 setTimeout(() => {
-                    console.log(this.searchString)
+                    for (let i = 0; i < this.menuContent.length; i++) {
+                        let section = this.menuContent[i]
+                        section.display = false
+                        for (let j = 0; j < section.items.length; j++) {
+                            if (this.searchString == "") {
+                                section.items[j].active=""
+                            } else {
+                                let regex = new RegExp(this.searchString, "i")
+                                if (regex.test(section.items[j].name)) {
+                                    section.items[j].active="search-result"
+                                    section.display = true
+                                } else {
+                                    section.items[j].active=""
+                                }
+                            }
+                        }
+                    }
                 }, 75)
+            },
+            closeMenu: function() {
+                if (this.windowWidth >= 960) {
+                    this.showSide = false
+                }
+            },
+            checkGroupStatus: function(section) {
+                section.temporary = false
+                setTimeout(() => {
+                    if (!section.temporary) {
+                        section.display = false
+                    }
+                }, 100)
             },
             test: function() {
                 console.log('test')
@@ -224,7 +326,23 @@
 </style>
 
 <style scoped>
-    .v-text-field{
+    .v-app-bar .v-text-field {
         max-width: 200px;
+    }
+
+    .search-result:not(.v-list-item--active):before {
+        opacity: 0.16 !important;
+    }
+    .search-result:not(.v-list-item--active):hover::before {
+        opacity: 0.24 !important;
+    }
+    .v-list-item--active:not(.search-result):hover::before {
+        opacity: 0.32 !important;
+    }
+    .v-list-item--active.search-result::before {
+        opacity: 0.4 !important;
+    }
+    .v-list-item--active.search-result:hover::before {
+        opacity: 0.48 !important;
     }
 </style>
