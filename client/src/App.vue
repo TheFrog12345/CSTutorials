@@ -124,7 +124,7 @@
                 temporary
                 right
                 dark
-                :width="windowWidth/3"
+                :width="windowWidth/3 > 250 ? windowWidth/3:250"
                 overlay-color="primary"
                 color="primary"
             >
