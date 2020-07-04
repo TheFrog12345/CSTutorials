@@ -7,6 +7,7 @@
             src="@/assets/calabogie.jpg"
         >
             <v-row
+                class="text-center"
                 style="height: 100%"
             >
                 <v-col
@@ -23,13 +24,16 @@
                 </v-col>
             </v-row>
         </v-img>
-        <span class="text-sm-caption">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
+        <v-row style="justify-content: center">
+            <span class="text-sm-subtitle-1">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
+        </v-row>
         <v-container class="mt-4">
             <v-row class="text-center">
                 <v-col
+                    v-resize="checkNumCols"
                     v-for="(card, index1) in textInformation"
                     :key="index1"
-                    col="4"
+                    :cols="cardCols"
                 >
                     <QACard
                         :title="card.question"
@@ -40,17 +44,48 @@
             </v-row>
             <v-divider class="mt-8"></v-divider>
         </v-container>
+        <v-container fluid class="mt-8">
+            <v-row style="justify-content: center">
+                <span class="text-sm-h2">Check out our posts!</span>
+            </v-row>
+            <v-row class="mt-8">
+                <RecommendationsBar
+                    icon="mdi-star"
+                    iconColor="yellow"
+                    title="Personal Favorites"
+                    subtitle="See our list of favorites below!"
+                    :listItems="recommendationsList"
+                    class="mt-4"
+                />
+                <v-col
+                    class="text-center"
+                >
+                    <ListItems
+                        theme="green accent-4"
+                        :items="timelineItems"
+                    />
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
 <script>
     import QACard from "@/components/QACard.vue"
+    import RecommendationsBar from "@/components/RecommendationsBar.vue"
+    import ListItems from "@/components/ListItems.vue"
     export default {
         name: 'Home',
+        components: {
+            QACard,
+            RecommendationsBar,
+            ListItems
+        },
         data: () => {
             return {
                 windowWidth: window.innerWidth,
                 windowHeight: window.innerHeight,
+                cardCols: 4,
                 textInformation: [
                     {
                         question: "Who",
@@ -64,16 +99,44 @@
                         question: "Why",
                         answer: "Here at Daily Innovation, we want to share our knowledge to educate and inspire future innovators"
                     }
+                ],
+                recommendationsList: [
+                    {
+                        title: "Set",
+                        subtitle: "July 2 2020",
+                        link: "about"
+                    },
+                    {
+                        title: "Dictionary",
+                        subtitle: "July 3 2020",
+                        link: "about"
+                    }
+                ],
+                timelineItems: [
+                    {
+                        date: "July 3 2020",
+                        title: "Dictionary",
+                        description: "Dictionaries are a powerful tool"
+                    },
+                    {
+                        date: "July 1 2020",
+                        title: "LinkedLists",
+                        description: "Linked lists are a nodal way to show an array"
+                    }
                 ]
             }
-        },
-        components: {
-            QACard,
         },
         methods: {
             resize: function() {
                 this.windowWidth = window.innerWidth
                 this.windowHeight = window.innerHeight
+            },
+            checkNumCols: function() {
+                if (this.windowWidth <= 600) {
+                    this.cardCols = 12
+                } else {
+                    this.cardCols = 4
+                }
             }
         }
     }

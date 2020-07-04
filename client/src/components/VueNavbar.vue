@@ -29,7 +29,7 @@
                 open-on-hover
                 dark
                 close-delay="50"
-                nudge-bottom="10"
+                nudge-bottom="14"
                 v-for="(section, index1) in menuContent"
                 :key="index1"
                 v-model="section.display"
@@ -85,6 +85,7 @@
                 <v-icon class="ml-2">mdi-account-supervisor</v-icon>
             </v-btn>
         </v-app-bar>
+        <v-card>
         <v-navigation-drawer
             app
             v-model="showSide"
@@ -95,6 +96,7 @@
             :width="windowWidth/3 > 250 ? windowWidth/3:250"
             overlay-color="primary"
             color="primary"
+            class="text-center"
         >
             <v-list>
                 <v-list-item>
@@ -157,6 +159,7 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
+        </v-card>
     </div>
 </template>
 

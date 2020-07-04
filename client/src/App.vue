@@ -2,19 +2,22 @@
     <div id="app" class="primary">
         <v-app>
             <VueNavbar/>
-            <v-main>
+            <v-main class="mb-16">
                 <router-view/>
             </v-main>
+            <VueFooter/>
         </v-app>
     </div>
 </template>
 
 <script>
     import VueNavbar from "@/components/VueNavbar.vue"
+    import VueFooter from "@/components/Footer.vue"
     export default {
         name: "App",
         components: {
-            VueNavbar
+            VueNavbar,
+            VueFooter
         },
         data: () => ({
             
@@ -35,7 +38,6 @@
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
     }
 
