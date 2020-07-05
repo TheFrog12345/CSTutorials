@@ -1,24 +1,31 @@
 <template>
     <div>
         <v-app-bar
+            :app="!isHomepage"
             fixed
             :color="appBarColor"
             dark
             v-scroll="fadeImage"
         >
             <div class="d-flex align-center">
-                <v-img
-                    alt="Vuetify Logo"
-                    class="shrink mr-2"
-                    contain
-                    src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-                    transition="scale-transition"
-                    width="40"
-                />
-
-                <v-toolbar-title
-                    class="mt-1"
-                >DAILY INNOVATION</v-toolbar-title>
+                <v-btn
+                    class="home-button"
+                    text
+                    @click="changeColorStatus(true)"
+                    to="/"
+                >
+                    <v-img
+                        alt="Vuetify Logo"
+                        class="shrink mr-2"
+                        contain
+                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+                        transition="scale-transition"
+                        width="40"
+                    />
+                    <v-toolbar-title
+                        class="mt-1"
+                    >DAILY INNOVATION</v-toolbar-title>
+                </v-btn>
             </div>
 
             <v-spacer></v-spacer>
@@ -37,6 +44,7 @@
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
                         class="hidden-sm-and-down mr-1"
+                        :class="section.active"
                         text
                         v-bind="attrs"
                         v-on="on"
@@ -52,6 +60,7 @@
                     <v-list-item
                         v-for="(item, index2) in section.items"
                         :key="index2"
+                        @click="changeColorStatus(false)"
                         to="/about"
                         :class="item.active"
                     >
@@ -80,85 +89,89 @@
             <v-btn
                 class="hidden-sm-and-down mr-1"
                 text
+                @click="changeColorStatus(false)"
+                to="/contact"
             >
                 Contact Us!
                 <v-icon class="ml-2">mdi-account-supervisor</v-icon>
             </v-btn>
         </v-app-bar>
         <v-card>
-        <v-navigation-drawer
-            app
-            v-model="showSide"
-            v-resize="closeMenu"
-            temporary
-            right
-            dark
-            :width="windowWidth/3 > 250 ? windowWidth/3:250"
-            overlay-color="primary"
-            color="primary"
-            class="text-center"
-        >
-            <v-list>
-                <v-list-item>
-                    <v-list-item-title class="title">
-                        Menu
-                    </v-list-item-title>
-                </v-list-item>
-            </v-list>
-
-            <v-divider></v-divider>
-            <v-list
-                nav
-                expand
+            <v-navigation-drawer
+                app
+                v-model="showSide"
+                v-resize="closeMenu"
+                temporary
+                right
+                dark
+                :width="windowWidth/3 > 250 ? windowWidth/3:250"
+                overlay-color="primary"
+                color="primary"
+                class="text-center"
             >
-                <v-list-item>
-                    <v-text-field
-                        label="Search..."
-                        outlined
-                        clearable
-                        hide-details
-                        filled
-                        dense
-                        v-model="searchString"
-                        @keydown="search"
-                        @click:clear="search"
-                        autocomplete="off"
-                    ></v-text-field>
-                </v-list-item>
-                <v-list-group
-                    v-for="(section, index1) in menuContent"
-                    :key="index1"
-                    v-model="section.display"
-                    color="white"
-                    no-action
-                >
-                    <template v-slot:activator>
-                        <v-list-item>
-                            <v-list-item-title class="text--white">
-                                {{ section.name }}
-                            </v-list-item-title>
-                        </v-list-item>
-                    </template>
-                    <v-list-item
-                        v-for="(item, index2) in section.items"
-                        :key="index2"
-                        to="/test"
-                        :class="item.active"
-                    >
-                        <v-list-item-title> {{ item.name }} </v-list-item-title>
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-title class="title">
+                            Menu
+                        </v-list-item-title>
                     </v-list-item>
-                </v-list-group>
-                
-                <v-list-item
-                    to="/test"
+                </v-list>
+
+                <v-divider></v-divider>
+                <v-list
+                    nav
+                    expand
                 >
-                    <v-list-item-title>
-                        Contact Us!
-                        <v-icon class="ml-2">mdi-account-supervisor</v-icon>
-                    </v-list-item-title>
-                </v-list-item>
-            </v-list>
-        </v-navigation-drawer>
+                    <v-list-item>
+                        <v-text-field
+                            label="Search..."
+                            outlined
+                            clearable
+                            hide-details
+                            filled
+                            dense
+                            v-model="searchString"
+                            @keydown="search"
+                            @click:clear="search"
+                            autocomplete="off"
+                        ></v-text-field>
+                    </v-list-item>
+                    <v-list-group
+                        v-for="(section, index1) in menuContent"
+                        :key="index1"
+                        v-model="section.display"
+                        color="white"
+                        no-action
+                    >
+                        <template v-slot:activator>
+                            <v-list-item :class="section.active">
+                                <v-list-item-title class="text--white">
+                                    {{ section.name }}
+                                </v-list-item-title>
+                            </v-list-item>
+                        </template>
+                        <v-list-item
+                            v-for="(item, index2) in section.items"
+                            :key="index2"
+                            @click="changeColorStatus(false)"
+                            to="/test"
+                            :class="item.active"
+                        >
+                            <v-list-item-title> {{ item.name }} </v-list-item-title>
+                        </v-list-item>
+                    </v-list-group>
+                    
+                    <v-list-item
+                        @click="changeColorStatus(false)"
+                        to="/test"
+                    >
+                        <v-list-item-title>
+                            Contact Us!
+                            <v-icon class="ml-2">mdi-account-supervisor</v-icon>
+                        </v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
         </v-card>
     </div>
 </template>
@@ -169,7 +182,8 @@
         data: () => {
             return {
                 showSide: false,
-                appBarColor: "rgb(0, 0, 0, 0)",
+                isHomepage: true,
+                appBarColor: "",
                 windowWidth: window.innerWidth,
                 menuContent: [
                     {
@@ -180,6 +194,7 @@
                                 active: ""
                             }
                         ],
+                        active: "",
                         display: false,
                         temporary: false
                     },
@@ -199,6 +214,7 @@
                                 active: ""
                             }
                         ],
+                        active: "",
                         display: false,
                         temporary: false
                     },
@@ -210,6 +226,7 @@
                                 active: ""
                             }
                         ],
+                        active: "",
                         display: false,
                         temporary: false
                     }
@@ -219,22 +236,31 @@
         },
         methods: {
             fadeImage: function() {
-                if (document.documentElement.scrollTop != 0) {
-                    this.appBarColor = "primary"
-                } else {
-                    this.appBarColor = "rgb(0, 0, 0, 0)"
+                if (this.isHomepage) {
+                    document.documentElement.scrollTop != 0 ? this.appBarColor="primary":this.appBarColor="rgb(0, 0, 0, 0)"
                 }
             },
             search: function() {
                 setTimeout(() => {
                     for (let i = 0; i < this.menuContent.length; i++) {
                         let section = this.menuContent[i]
+                        let regex = new RegExp(this.searchString, "i")
                         section.display = false
+                        if (this.searchString == "") {
+                            section.active=""
+                        } else {
+                            if (regex.test(section.name)) {
+                                section.display = true
+                                section.active="search-result"
+                            } else {
+                                section.active=""
+                            }
+                        }
+                        
                         for (let j = 0; j < section.items.length; j++) {
                             if (this.searchString == "") {
                                 section.items[j].active=""
                             } else {
-                                let regex = new RegExp(this.searchString, "i")
                                 if (regex.test(section.items[j].name)) {
                                     section.items[j].active="search-result"
                                     section.display = true
@@ -252,17 +278,37 @@
                 if (this.windowWidth >= 960) {
                     this.showSide = false
                 }
+            },
+            changeColorStatus: function(value) {
+                if (this.isHomepage != value) {
+                    this.isHomepage = value
+                    this.isHomepage ? this.appBarColor="rgb(0, 0, 0, 0)":this.appBarColor="primary"
+                }
             }
+        },
+        mounted() {
+            window.location.pathname == "/" ? this.isHomepage=true:this.isHomepage=false
+            this.isHomepage ? this.appBarColor="rgb(0, 0, 0, 0)":this.appBarColor="primary"
         }
     }
 </script>
 
 <style scoped>
+    .home-button {
+        padding: 0 4px !important;
+    }
+    .home-button.v-btn--active::before {
+        opacity: 0;
+    }
+    .home-button.v-btn--active:hover::before {
+        opacity: 0.08;
+    }
+
     .v-app-bar .v-text-field {
         max-width: 200px;
     }
 
-    .search-result:not(.v-list-item--active):before {
+    .search-result:not(.v-list-item--active)::before {
         opacity: 0.16 !important;
     }
     .search-result:not(.v-list-item--active):hover::before {

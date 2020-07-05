@@ -15,6 +15,12 @@ Vue.use(VueRouter)
         name: 'About',
         // lazy loading
         component: () => import('../views/About.vue')
+    },
+    {
+        path: '/contact',
+        name: 'Contact',
+        // lazy loading
+        component: () => import('../views/Contact.vue')
     }
 ]
 

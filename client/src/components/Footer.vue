@@ -11,19 +11,14 @@
             width="100%"
             class="primary text--white text-center"
         >
-            <v-card-text>
-                <v-btn color="white" :style="{color: '#1976d2'}">
-                    Contact Us!
-                    <v-icon class="ml-2">mdi-account-supervisor</v-icon>
-                </v-btn>
-            </v-card-text>
-
-            <v-card-text class="white--text pt-0">
-                Tutorials are peer edited and written by both Yang and Fred
+            <v-card-text class="white--text">
+                This website is coded using Vue for the frontend and Flask for the server.
                 <br>
-                Website frontend designed and coded by Fred Liu
+                Page routing - Vue Router
                 <br>
-                Backend functions coded by Yang Lu
+                Vue component framework - Vuetify
+                <br>
+                To learn more, visit the contact us page.
             </v-card-text>
 
             <v-divider></v-divider>
