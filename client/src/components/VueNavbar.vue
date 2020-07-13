@@ -1,7 +1,6 @@
 <template>
     <div>
         <v-app-bar
-            :app="!isHomepage"
             fixed
             :color="appBarColor"
             dark
@@ -219,10 +218,10 @@
                         temporary: false
                     },
                     {
-                        name: "Algorithms",
+                        name: "Other",
                         items: [
                             {
-                                name: "Syntax",
+                                name: "Git",
                                 active: ""
                             }
                         ],
@@ -296,6 +295,7 @@
 <style scoped>
     .home-button {
         padding: 0 4px !important;
+        height: auto !important;
     }
     .home-button.v-btn--active::before {
         opacity: 0;
