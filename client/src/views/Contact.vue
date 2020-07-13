@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-14">
         <v-container>
             <v-row class="text-center">
                 <v-col>
@@ -19,6 +19,7 @@
                 :photo="contributor.photo"
                 :name="contributor.name"
                 :role="contributor.role"
+                :description="contributor.description"
                 :contactIcons="contributor.contactIcons"
                 class="mt-8"
             />
@@ -40,6 +41,18 @@
                         photo: "fred.jpg",
                         name: 'Fred Liu',
                         role: 'Website UI designer and frontend developer. Tutorial writer.',
+                        description: [
+                            `
+                                Hello! My name is Fred Liu and I'm going into my first year at the University of Waterloo for a Bachelor of Computer Science.
+                                I'm very passionate about computer science, knowing that I can make cool, entertaining or beneficial apps from just my laptop.
+                                I hope to make a positive impact using my skills on technology!
+                            `,
+                            `
+                                When I'm not programming, I play sports, mainly racket sports.
+                                I also enjoy listening to music and playing the piano.
+                                Please feel free to contact me anytime!
+                            `
+                        ],
                         contactIcons: [
                             {
                                 icon: 'mdi-github',
