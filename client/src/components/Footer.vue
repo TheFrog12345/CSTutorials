@@ -1,9 +1,7 @@
 <template>
     <v-footer
         dark
-        app
         padless
-        absolute
     >
         <v-card
             flat
@@ -36,3 +34,9 @@
 
     }
 </script>
+
+<style scoped>
+    .v-footer {
+        z-index: 5;
+    }
+</style>
