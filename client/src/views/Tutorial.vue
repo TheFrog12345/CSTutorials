@@ -22,10 +22,17 @@
                             v-if="part.group=='paragraph'"
                             class="mb-4 text-body-2"
                         > {{ part.text }} </span>
-                        <span
+                        <div
                             v-if="part.group=='command'"
-                            class="ml-8 mb-4 text-body-2 command"
-                        > {{ part.text }} </span>
+                            class="ml-8 mb-4"
+                        >
+                            <span class="text-body-2 command">
+                                {{ part.text }}
+                            </span>
+                            <span class="text-caption">
+                                {{ part.description }}
+                            </span>
+                        </div>
                         <v-img
                             v-if="part.group=='image'"
                             :src='require("../assets/" + part.text)'
@@ -69,6 +76,10 @@
                 text: {
                     type: String,
                     required: true
+                },
+                description: {
+                    type: String,
+                    required: false
                 },
                 number: {
                     type: Number,
