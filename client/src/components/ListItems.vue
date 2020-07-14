@@ -13,7 +13,8 @@
                 dark
             >
                 <v-card-title class="title"> {{ item.title }} </v-card-title>
-                <v-card-text class="white text--primary">
+                <v-card-subtitle> {{ item.subtitle }} </v-card-subtitle>
+                <v-card-text class="white text--primary text-center pt-4">
                     <p> {{ item.description }} </p>
                     <v-btn
                         :color="theme"

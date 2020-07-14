@@ -25,7 +25,7 @@
             </v-row>
         </v-img>
         <v-row style="justify-content: center">
-            <span class="text-sm-subtitle-1">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
+            <span class="text-subtitle-1">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
         </v-row>
         <v-container class="mt-4">
             <v-row class="text-center">
@@ -57,9 +57,7 @@
                     :listItems="recommendationsList"
                     class="mt-4"
                 />
-                <v-col
-                    class="text-center"
-                >
+                <v-col>
                     <ListItems
                         theme="green accent-4"
                         :items="timelineItems"
@@ -116,11 +114,13 @@
                     {
                         date: "July 3 2020",
                         title: "Dictionary",
+                        subtitle: "Data Structures",
                         description: "Dictionaries are a powerful tool"
                     },
                     {
                         date: "July 1 2020",
                         title: "LinkedLists",
+                        subtitle: "Data Structures",
                         description: "Linked lists are a nodal way to show an array"
                     }
                 ]

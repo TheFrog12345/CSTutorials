@@ -4,17 +4,24 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-    const routes = [
+
+const routes = [
     {
         path: '/',
         name: 'Home',
         component: Home
     },
     {
-        path: '/about',
-        name: 'About',
+        path: '/tutorials/:tutorialName',
+        name: 'Tutorial',
         // lazy loading
-        component: () => import('../views/About.vue')
+        component: () => import('../views/Tutorial.vue')
+    },
+    {
+        path: '/contact',
+        name: 'Contact',
+        // lazy loading
+        component: () => import('../views/Contact.vue')
     }
 ]
 
