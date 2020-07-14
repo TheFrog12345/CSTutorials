@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="primary">
+    <div id="TestMergeConflict" class="primary">
         <v-app>
             <VueNavbar/>
             <v-main>
