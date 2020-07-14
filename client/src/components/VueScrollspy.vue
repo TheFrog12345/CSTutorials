@@ -49,7 +49,6 @@
                 let previousDistance = 10000
                 for (let i = 0; i < targets.length; i++) {
                     let offsetTop = targets[i].getBoundingClientRect().top-56
-                    console.log(previousDistance, offsetTop)
                     if (offsetTop >= 0) {
                         for (let j = 0; j < this.sections.length; j++) {
                             this.sections[j].active = false

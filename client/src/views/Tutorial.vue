@@ -55,6 +55,7 @@
 
 <script>
     import VueScrollspy from "@/components/VueScrollspy.vue"
+    import Tutorials from "@/information/tutorials"
     export default {
         name: "Tutorial",
         components: {
@@ -62,43 +63,21 @@
         },
         data: () => {
             return {
-                sections: []
-            }
-        },
-        props: {
-            title: {
-                type: String,
-                required: true
-            },
-            subtitle: {
-                type: String,
-                required: false
-            },
-            tutorialParts: {
-                type: Array,
-                required: true,
-                group: {
-                    type: String,
-                    required: true
-                },
-                text: {
-                    type: String,
-                    required: true
-                },
-                description: {
-                    type: String,
-                    required: false
-                },
-                number: {
-                    type: Number,
-                    required: false
-                }
+                sections: [],
+                title: '',
+                subtitle: '',
+                tutorialParts: []
             }
         },
         methods: {
             
         },
         mounted() {
+            let tutorialName = this.$route.params.tutorialName.toLowerCase()
+            this.title = Tutorials[tutorialName].title
+            this.subtitle = Tutorials[tutorialName].subtitle
+            this.tutorialParts = Tutorials[tutorialName].tutorialParts
+            
             this.sections.push({name: this.title, active: false})
             for (let i = 0; i < this.tutorialParts.length; i++) {
                 if (this.tutorialParts[i].group == 'header') {
@@ -113,8 +92,6 @@
                     for (let j = 0; j < this.sections.length; j++) {
                         this.sections[j].active = false
                     }
-                    
-                    
                     offsetTop < previousDistance ? this.sections[i].active = true:this.sections[i-1].active = true
                     break
                 }
