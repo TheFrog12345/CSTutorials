@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="primary">
+    <div id="CreatingMergeConflict" class="primary">
         <v-app>
             <VueNavbar/>
             <v-main class="mb-16">
