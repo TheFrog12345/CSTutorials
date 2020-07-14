@@ -29,15 +29,23 @@
                             <span class="text-body-2 command">
                                 {{ part.text }}
                             </span>
+                            <span class="text-caption" v-if="part.description">
+                                ({{ part.description }})
+                            </span>
+                        </div>
+                        <div
+                            v-if="part.group=='image'"
+                            class="ml-8 mb-4"
+                        >
+                            <v-img
+                                :src='require("../assets/" + part.text)'
+                                width="50%"
+                                class="ml-0"
+                            ></v-img>
                             <span class="text-caption">
                                 {{ part.description }}
                             </span>
                         </div>
-                        <v-img
-                            v-if="part.group=='image'"
-                            :src='require("../assets/" + part.text)'
-                        >
-                        </v-img>
                     </div>
                 </v-col>
             </v-row>

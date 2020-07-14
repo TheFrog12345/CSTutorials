@@ -60,7 +60,7 @@
                         v-for="(item, index2) in section.items"
                         :key="index2"
                         @click="changeColorStatus(false)"
-                        to="/about"
+                        :to="'/tutorials/'+item.name"
                         :class="item.active"
                     >
                         <v-list-item-title> {{ item.name }} </v-list-item-title>
