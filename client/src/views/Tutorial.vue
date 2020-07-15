@@ -6,13 +6,14 @@
         <v-container>
             <v-row>
                 <v-col>
-                    <div>
+                    <div class="ml-2">
                         <span class="text-h4 mt-4 section-header"> {{ title }} <span class="section-anchor" id="header1"></span> </span>
                         <span class="text-subtitle-2"> {{ subtitle }} </span>
                     </div>
                     <div
                         v-for="(part, index) in tutorialParts"
                         :key="index"
+                        class="ml-2 tutorials"
                     >
                         <span
                             v-if="part.group=='header'"
@@ -35,16 +36,32 @@
                         </div>
                         <div
                             v-if="part.group=='image'"
-                            class="ml-8 mb-4"
+                            class="ml-0 mb-4"
                         >
                             <v-img
                                 :src='require("../assets/" + part.text)'
                                 width="50%"
-                                class="ml-0"
+                                class="ml-8"
+                                @click="part.showDetails=true"
                             ></v-img>
-                            <span class="text-caption">
+                            <span class="text-caption ml-8">
                                 {{ part.description }}
                             </span>
+                            <v-overlay
+                                v-model="part.showDetails"
+                                @click.native="part.showDetails=false"
+                                class="tutorial-overlay text-center"
+                                z-index="1000"
+                                opacity="0.9"
+                            >
+                                <v-img
+                                    :src='require("../assets/" + part.text)'
+                                    width="100%"
+                                ></v-img>
+                                <span class="text-caption overlay-caption mt-6">
+                                    {{ part.description }}
+                                </span>
+                            </v-overlay>
                         </div>
                     </div>
                 </v-col>
@@ -101,12 +118,16 @@
     }
 </script>
 
+<style>
+    .tutorial-overlay .v-overlay__content {
+        width: 90% !important;
+        max-width: 960px !important;
+    }
+</style>
+
 <style scoped>
     span {
         display: block;
-    }
-    .container div {
-        margin-left: 8px
     }
     .section-anchor {
         display: inline;
@@ -117,5 +138,11 @@
     .command {
         font-weight: bold;
         color: black;
+    }
+    .overlay-caption {
+        font-size: 24px !important;
+    }
+    .tutorials .v-image.ml-8:hover {
+        cursor: pointer;
     }
 </style>

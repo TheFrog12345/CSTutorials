@@ -132,7 +132,8 @@ let git = {
         {
             group: 'image',
             text: `gitlog.png`,
-            description: `4e99...b508 is the commit id of the commit at the top`
+            description: `4e99...b508 is the commit id of the commit at the top`,
+            showDetails: false
         },
         {
             group: 'paragraph',
@@ -204,7 +205,8 @@ let git = {
         },
         {
             group: 'image',
-            text: 'mergeconflict.png'
+            text: 'mergeconflict.png',
+            showDetails: false
         },
         {
             group: 'paragraph',
