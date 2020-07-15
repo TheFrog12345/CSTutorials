@@ -1,5 +1,5 @@
 <template>
-    <div id="TestMergeConflict" class="primary">
+    <div id="TwoChangesToThisLine" class="primary">
         <v-app>
             <VueNavbar/>
             <v-main>
