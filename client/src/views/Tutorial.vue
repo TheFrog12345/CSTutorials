@@ -143,6 +143,6 @@
         font-size: 24px !important;
     }
     .tutorials .v-image.ml-8:hover {
-        cursor: pointer;
+        cursor: url('../assets/magnify-plus.png'), auto;
     }
 </style>
