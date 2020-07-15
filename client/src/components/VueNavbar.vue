@@ -60,7 +60,7 @@
                         v-for="(item, index2) in section.items"
                         :key="index2"
                         @click="changeColorStatus(false)"
-                        :to="'/tutorials/'+item.name"
+                        :to="'/tutorials/'+item.name.toLowerCase()"
                         :class="item.active"
                     >
                         <v-list-item-title> {{ item.name }} </v-list-item-title>
@@ -153,7 +153,7 @@
                             v-for="(item, index2) in section.items"
                             :key="index2"
                             @click="changeColorStatus(false)"
-                            to="/test"
+                            :to="'/tutorials/'+item.name.toLowerCase()"
                             :class="item.active"
                         >
                             <v-list-item-title> {{ item.name }} </v-list-item-title>
@@ -162,7 +162,7 @@
                     
                     <v-list-item
                         @click="changeColorStatus(false)"
-                        to="/test"
+                        to="/contact"
                     >
                         <v-list-item-title>
                             Contact Us!

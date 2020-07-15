@@ -1,3 +1,7 @@
+# server requirements
+.venv
+
+# frontend requirements
 .DS_Store
 node_modules
 /dist
