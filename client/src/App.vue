@@ -1,5 +1,5 @@
 <template>
-    <div id="TwoChangesToThisLine" class="primary">
+    <div id="app">
         <v-app>
             <VueNavbar/>
             <v-main>
