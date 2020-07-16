@@ -14,8 +14,9 @@
                 <v-row>
                     <v-col>
                         <div class="ml-2">
-                            <span class="text-h4 mt-4 section-header"> {{ title }} <span class="section-anchor" id="header1"></span> </span>
+                            <span class="text-h4 mt-4 section-header"> {{ title }} <v-icon v-if="favorites" color="yellow">mdi-star</v-icon> <span class="section-anchor" id="header1"></span> </span>
                             <span class="text-subtitle-2"> {{ subtitle }} </span>
+                            <span class="text-subtitle-2 mt-8"> {{ date }} </span>
                         </div>
                         <div
                             v-for="(part, index) in tutorialParts"
@@ -65,7 +66,7 @@
                                         :src='require("../assets/" + part.text)'
                                         width="100%"
                                     ></v-img>
-                                    <span class="text-caption overlay-caption mt-6">
+                                    <span class="text-md-h5 overlay-caption mt-6">
                                         {{ part.description }}
                                     </span>
                                 </v-overlay>
@@ -93,6 +94,8 @@
                 sections: [],
                 title: '',
                 subtitle: '',
+                date: '',
+                favorites: false,
                 tutorialParts: []
             }
         },
@@ -119,10 +122,14 @@
                         this.sections = []
                         this.title = ''
                         this.subtitle = ''
+                        this.date = ''
+                        this.favorites = false
                         this.tutorialParts = []
                         
                         this.title = result.data.title
                         this.subtitle = result.data.subtitle
+                        this.date = result.data.date
+                        this.favorites = result.data.favorites
                         this.tutorialParts = result.data.tutorialParts
 
                         this.sections.push({name: this.title, active: false})
@@ -178,9 +185,6 @@
     .command {
         font-weight: bold;
         color: black;
-    }
-    .overlay-caption {
-        font-size: 24px !important;
     }
     .tutorials .v-image.ml-8:hover {
         cursor: url('../assets/magnify-plus.png'), auto;
