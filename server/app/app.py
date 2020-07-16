@@ -13,6 +13,7 @@ testGitInfo = {
     'title': "Git: Version Control Software",
     'subtitle': "The basics",
     'date': 'July 14 2020',
+    'favorites': True,
     'tutorialParts': [
         {
             'group': 'header',
@@ -222,12 +223,18 @@ testGitInfo = {
         },
         {
             'group': 'paragraph',
-            'text': '''When working with other collaborators, there will also be files that you don’t want Git to track. For example, these would be setting files that vary for each computer. Since the setting files are usually different for each computer, having Git combine the two different settings would cause the settings to be incorrect.'''
+            'text': '''When working with other collaborators, there are files that you don’t want Git to track. For example, these would be setting files. Since the setting files vary by computer, having Git combine the two different settings would make the settings incorrect.'''
         },
         {
             'group': 'paragraph',
-            'text': '''To tell Git to ignore files that you don't want to be tracked, create a file called .gitignore in the project’s root folder. In the file, you want to put in the names of the files you want Git to ignore. You always want to add and commit changes to your .gitignore files so that Git will know the files you want to be ignored with each commit.'''
-        }
+            'text': '''To tell Git to ignore files that you don't want to be tracked, create a file called .gitignore in the project’s root folder. In the file, you want to put in the names of the files or folders that you want Git to ignore. You always want to add and commit changes to your .gitignore files so that Git will know the files you want to be ignored with each commit.'''
+        },
+        {
+            'group': 'image',
+            'text': 'gitignore.png',
+            'description': '''Virtual environments are also excluded because it does not make sense to push these large folders to an online repository.''',
+            'showDetails': False
+        },
     ]
 }
 
