@@ -12,8 +12,8 @@
                 :color="theme"
                 dark
             >
-                <v-card-title class="title"> {{ item.title }} </v-card-title>
-                <v-card-subtitle> {{ item.subtitle }} </v-card-subtitle>
+                <v-card-title class="title"> {{ item.name }} </v-card-title>
+                <v-card-subtitle> {{ item.section }} </v-card-subtitle>
                 <v-card-text class="white text--primary text-center pt-4">
                     <p> {{ item.description }} </p>
                     <v-btn
@@ -51,7 +51,11 @@
                     required: false,
                     default: ""
                 },
-                title: {
+                name: {
+                    type: String,
+                    required: true
+                },
+                section: {
                     type: String,
                     required: true
                 },

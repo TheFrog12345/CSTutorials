@@ -3,7 +3,6 @@
         clipped
         fixed
         app
-        v-scroll="checkSection"
     >
         <v-list class="mt-4">
             <v-list-item>
@@ -40,23 +39,6 @@
                 active: {
                     type: Boolean,
                     default: false
-                }
-            }
-        },
-        methods: {
-            checkSection: function() {
-                let targets = document.querySelectorAll('.section-header')
-                let previousDistance = 10000
-                for (let i = 0; i < targets.length; i++) {
-                    let offsetTop = targets[i].getBoundingClientRect().top-56
-                    if (offsetTop >= 0) {
-                        for (let j = 0; j < this.sections.length; j++) {
-                            this.sections[j].active = false
-                        }
-                        offsetTop < previousDistance ? this.sections[i].active = true:this.sections[i-1].active = true
-                        break
-                    }
-                    previousDistance = offsetTop*-1
                 }
             }
         }

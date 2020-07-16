@@ -10,7 +10,6 @@
                 <v-btn
                     class="home-button"
                     text
-                    @click="changeColorStatus(true)"
                     to="/"
                 >
                     <v-img
@@ -59,7 +58,6 @@
                     <v-list-item
                         v-for="(item, index2) in section.items"
                         :key="index2"
-                        @click="changeColorStatus(false)"
                         :to="'/tutorials/'+item.name.toLowerCase()"
                         :class="item.active"
                     >
@@ -88,7 +86,6 @@
             <v-btn
                 class="hidden-sm-and-down mr-1"
                 text
-                @click="changeColorStatus(false)"
                 to="/contact"
             >
                 Contact Us!
@@ -152,7 +149,6 @@
                         <v-list-item
                             v-for="(item, index2) in section.items"
                             :key="index2"
-                            @click="changeColorStatus(false)"
                             :to="'/tutorials/'+item.name.toLowerCase()"
                             :class="item.active"
                         >
@@ -161,7 +157,6 @@
                     </v-list-group>
                     
                     <v-list-item
-                        @click="changeColorStatus(false)"
                         to="/contact"
                     >
                         <v-list-item-title>
@@ -176,6 +171,7 @@
 </template>
 
 <script>
+    //import axios from 'axios'
     export default {
         name: "VueNavbar",
         data: () => {
@@ -194,8 +190,7 @@
                             }
                         ],
                         active: "",
-                        display: false,
-                        temporary: false
+                        display: false
                     },
                     {
                         name: "Data Structures",
@@ -214,8 +209,7 @@
                             }
                         ],
                         active: "",
-                        display: false,
-                        temporary: false
+                        display: false
                     },
                     {
                         name: "Other",
@@ -226,8 +220,7 @@
                             }
                         ],
                         active: "",
-                        display: false,
-                        temporary: false
+                        display: false
                     }
                 ],
                 searchString: ""
@@ -278,16 +271,29 @@
                     this.showSide = false
                 }
             },
-            changeColorStatus: function(value) {
-                if (this.isHomepage != value) {
-                    this.isHomepage = value
-                    this.isHomepage ? this.appBarColor="rgb(0, 0, 0, 0)":this.appBarColor="primary"
+            checkIfHomepage: function(path) {
+                path = path.split('/')[1]
+                if (path == '' || path[0] == '#') {
+                    this.isHomepage = true
+                    this.fadeImage()
+                } else {
+                    this.isHomepage = false
+                    this.appBarColor = 'primary'
                 }
             }
         },
+        watch: {
+            '$route' (to) {
+                this.checkIfHomepage(to.fullPath)
+            }
+        },
         mounted() {
-            window.location.pathname == "/" ? this.isHomepage=true:this.isHomepage=false
-            this.isHomepage ? this.appBarColor="rgb(0, 0, 0, 0)":this.appBarColor="primary"
+            /*
+            axios.post('http://127.0.0.1:5000/getTutorials')
+                .then((result) => {
+                    this.menuContent = result.data
+                })*/
+            this.checkIfHomepage(window.location.pathname)
         }
     }
 </script>

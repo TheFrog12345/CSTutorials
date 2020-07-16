@@ -69,6 +69,7 @@
 </template>
 
 <script>
+    //import axios from 'axios'
     import QACard from "@/components/QACard.vue"
     import RecommendationsBar from "@/components/RecommendationsBar.vue"
     import ListItems from "@/components/ListItems.vue"
@@ -100,27 +101,25 @@
                 ],
                 recommendationsList: [
                     {
-                        title: "Set",
-                        subtitle: "July 2 2020",
-                        link: "about"
+                        name: "Set",
+                        section: "Data Structures"
                     },
                     {
-                        title: "Dictionary",
-                        subtitle: "July 3 2020",
-                        link: "about"
+                        name: "Dictionary",
+                        section: "Data Structures"
                     }
                 ],
                 timelineItems: [
                     {
                         date: "July 3 2020",
-                        title: "Dictionary",
-                        subtitle: "Data Structures",
+                        name: "Dictionary",
+                        section: "Data Structures",
                         description: "Dictionaries are a powerful tool"
                     },
                     {
                         date: "July 1 2020",
-                        title: "LinkedLists",
-                        subtitle: "Data Structures",
+                        name: "Linked Lists",
+                        section: "Data Structures",
                         description: "Linked lists are a nodal way to show an array"
                     }
                 ]
@@ -138,6 +137,17 @@
                     this.cardCols = 4
                 }
             }
+        },
+        mounted() {
+            /*
+            axios.post('http://127.0.0.1:5000/getRecents')
+                .then((result) => {
+                    this.timelineItems = result.data
+                })
+            axios.post('http://127.0.0.1:5000/getFavorites')
+                .then((result) => {
+                    this.recommendationsList = result.data
+                })*/
         }
     }
 </script>

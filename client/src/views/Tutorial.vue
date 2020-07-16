@@ -1,5 +1,8 @@
 <template>
-    <div class="mt-14">
+    <div
+        class="mt-14"
+        v-scroll="checkSection"
+    >
         <div v-if="tutorialNotFound" class="text-center">
             <span class="text-overline mt-16">Error 404: Tutorial page not found </span>
         </div>
@@ -94,6 +97,21 @@
             }
         },
         methods: {
+            checkSection: function() {
+                let targets = document.querySelectorAll('.section-header')
+                let previousDistance = 10000
+                for (let i = 0; i < targets.length; i++) {
+                    let offsetTop = targets[i].getBoundingClientRect().top-56
+                    if (offsetTop >= 0) {
+                        for (let j = 0; j < this.sections.length; j++) {
+                            this.sections[j].active = false
+                        }
+                        offsetTop < previousDistance ? this.sections[i].active = true:this.sections[i-1].active = true
+                        break
+                    }
+                    previousDistance = offsetTop*-1
+                }
+            },
             getTutorialData: function(tutorialName) {
                 axios.post('http://127.0.0.1:5000/tutorials/'+tutorialName.toLowerCase())
                     .then((result) => {
@@ -103,10 +121,9 @@
                         this.subtitle = ''
                         this.tutorialParts = []
                         
-                        result = result.data
-                        this.title = result.title
-                        this.subtitle = result.subtitle
-                        this.tutorialParts = result.tutorialParts
+                        this.title = result.data.title
+                        this.subtitle = result.data.subtitle
+                        this.tutorialParts = result.data.tutorialParts
 
                         this.sections.push({name: this.title, active: false})
                         for (let i = 0; i < this.tutorialParts.length; i++) {
@@ -116,19 +133,7 @@
                         }
 
                         setTimeout(() => {
-                            let targets = document.querySelectorAll('.section-header')
-                            let previousDistance = 10000
-                            for (let i = 0; i < targets.length; i++) {
-                                let offsetTop = targets[i].getBoundingClientRect().top-56
-                                if (offsetTop >= 0) {
-                                    for (let j = 0; j < this.sections.length; j++) {
-                                        this.sections[j].active = false
-                                    }
-                                    offsetTop < previousDistance ? this.sections[i].active = true:this.sections[i-1].active = true
-                                    break
-                                }
-                                previousDistance = offsetTop*-1
-                            }
+                            this.checkSection()
                         }, 0)
 
                         this.loadedParameter = tutorialName.toLowerCase()

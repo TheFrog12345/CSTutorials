@@ -39,11 +39,11 @@
                 <v-list-item
                     v-for="(item, index) in listItems"
                     :key="index"
-                    :to="'/'+item.link"
+                    :to="'/tutorials/'+item.name"
                 >
                     <v-list-item-content>
-                        <v-list-item-title> {{ item.title }} </v-list-item-title>
-                        <v-list-item-subtitle> {{ item.subtitle }} </v-list-item-subtitle>
+                        <v-list-item-title> {{ item.name }} </v-list-item-title>
+                        <v-list-item-subtitle> {{ item.section }} </v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -74,17 +74,13 @@
             listItems: {
                 type: Array,
                 required: true,
-                title: {
+                name: {
                     type: String,
                     required: true
                 },
-                subtitle: {
+                section: {
                     type: String,
                     required: false
-                },
-                link: {
-                    type: String,
-                    required: true
                 }
             }
         }

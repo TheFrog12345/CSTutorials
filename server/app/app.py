@@ -12,6 +12,7 @@ app.config['SECRET_KEY'] = 'encrypt_website_for_security'
 testGitInfo = {
     'title': "Git: Version Control Software",
     'subtitle': "The basics",
+    'date': 'July 14 2020',
     'tutorialParts': [
         {
             'group': 'header',
