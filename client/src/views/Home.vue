@@ -1,7 +1,6 @@
 <template>
-    <div>
+    <div v-resize="resize">
         <v-img
-            v-resize="resize"
             :width="windowWidth"
             :height="windowHeight"
             src="@/assets/calabogie.jpg"
@@ -25,12 +24,11 @@
             </v-row>
         </v-img>
         <v-row style="justify-content: center">
-            <span class="text-subtitle-1">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
+            <span class="text-subtitle-1" style="padding: 0 50px;">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
         </v-row>
         <v-container class="mt-4">
             <v-row class="text-center">
                 <v-col
-                    v-resize="checkNumCols"
                     v-for="(card, index1) in textInformation"
                     :key="index1"
                     :cols="cardCols"
@@ -57,10 +55,11 @@
                     :listItems="recommendationsList"
                     class="mt-4"
                 />
-                <v-col>
+                <v-col class="recents">
                     <ListItems
                         theme="green accent-4"
                         :items="timelineItems"
+                        :dense="timelineWidth < 800"
                     />
                 </v-col>
             </v-row>
@@ -85,6 +84,7 @@
                 windowWidth: window.innerWidth,
                 windowHeight: window.innerHeight,
                 cardCols: 4,
+                timelineWidth: 0,
                 textInformation: [
                     {
                         question: "Who",
@@ -126,16 +126,19 @@
             }
         },
         methods: {
+            getTimelineWidth: function() {
+                this.timelineWidth = getComputedStyle(document.querySelector('.recents')).width
+                this.timelineWidth = Number(this.timelineWidth.substring(0, this.timelineWidth.length-2))
+            },
             resize: function() {
                 this.windowWidth = window.innerWidth
                 this.windowHeight = window.innerHeight
-            },
-            checkNumCols: function() {
                 if (this.windowWidth <= 600) {
                     this.cardCols = 12
                 } else {
                     this.cardCols = 4
                 }
+                this.getTimelineWidth()
             }
         },
         mounted() {
@@ -148,6 +151,7 @@
                 .then((result) => {
                     this.recommendationsList = result.data
                 })*/
+            this.getTimelineWidth()
         }
     }
 </script>

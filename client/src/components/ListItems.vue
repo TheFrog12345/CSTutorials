@@ -1,5 +1,7 @@
 <template>
-    <v-timeline>
+    <v-timeline
+        :dense="dense"
+    >
         <v-timeline-item
             v-for="(item, index) in items"
             :key="index"
@@ -20,6 +22,7 @@
                         :color="theme"
                         class="mx-0"
                         outlined
+                        :to="'/tutorials/'+item.name"
                     >
                         Read More
                     </v-btn>
@@ -37,6 +40,10 @@
                 type: String,
                 required: true,
                 default: "primary"
+            },
+            dense: {
+                type: Boolean,
+                required: true
             },
             items: {
                 type: Array,
@@ -69,5 +76,7 @@
 </script>
 
 <style scoped>
-
+    .v-timeline {
+        margin: 0 50px;
+    }
 </style>

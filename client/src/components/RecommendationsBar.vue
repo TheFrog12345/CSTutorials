@@ -1,10 +1,13 @@
 <template>
-    <v-card>
+    <v-card
+        height="fit-content"
+    >
         <v-navigation-drawer
             permanent
             expand-on-hover
             hide-overlay
             color="green accent-4"
+            height="auto"
         >
             <v-list
                 dark
