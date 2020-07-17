@@ -14,7 +14,24 @@
                 <v-row>
                     <v-col>
                         <div class="ml-2">
-                            <span class="text-h4 mt-4 section-header"> {{ title }} <v-icon v-if="favorites" color="yellow">mdi-star</v-icon> <span class="section-anchor" id="header1"></span> </span>
+                            <span class="text-h4 mt-4 section-header"> {{ title }}
+                                <v-tooltip
+                                    v-if="favorites"
+                                    bottom
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-icon
+                                            v-on="on"
+                                            v-bind="attrs"
+                                            color="green accent-4"
+                                            large
+                                            style="margin-top: -5px"
+                                        > mdi-bookmark-multiple </v-icon>
+                                    </template>
+                                    <span> One of our favorites! </span>
+                                </v-tooltip>
+                                <span class="section-anchor" id="header1"></span>
+                            </span>
                             <span class="text-subtitle-2"> {{ subtitle }} </span>
                             <span class="text-subtitle-2 mt-8"> {{ date }} </span>
                         </div>
@@ -175,6 +192,9 @@
 <style scoped>
     span {
         display: block;
+    }
+    .v-tooltip {
+        display: inline;
     }
     .section-anchor {
         display: inline;
