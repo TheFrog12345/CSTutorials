@@ -64,7 +64,7 @@
                                 class="ml-0 mb-4"
                             >
                                 <v-img
-                                    :src='require("../assets/" + part.text)'
+                                    :src='require("../assets/" + loadedParameter + "/" + part.text)'
                                     width="50%"
                                     class="ml-8"
                                     @click="part.showDetails=true"
@@ -80,7 +80,7 @@
                                     opacity="0.9"
                                 >
                                     <v-img
-                                        :src='require("../assets/" + part.text)'
+                                        :src='require("../assets/" + loadedParameter + "/" + part.text)'
                                         width="100%"
                                     ></v-img>
                                     <span class="text-md-h5 overlay-caption mt-6">
@@ -207,6 +207,6 @@
         color: black;
     }
     .tutorials .v-image.ml-8:hover {
-        cursor: url('../assets/magnify-plus.png'), auto;
+        cursor: url('../assets/magnify.png'), auto;
     }
 </style>

@@ -8,6 +8,7 @@
             hide-overlay
             color="green accent-4"
             height="auto"
+            class="pb-4"
         >
             <v-list
                 dark

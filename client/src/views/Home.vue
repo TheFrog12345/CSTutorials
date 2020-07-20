@@ -16,7 +16,7 @@
                 >
                     <label class="text-sm-h2 white--text" style="display: block">Coding is a freedom</label>
                     <br>
-                    <label class="text-sm-h6 white--text" style="display: block">Learn about this freedom of design</label>
+                    <label class="text-sm-h6 white--text" style="display: block">Learn about coding on this website!</label>
                     <br>
                     <br>
                     <br>
@@ -88,15 +88,15 @@
                 textInformation: [
                     {
                         question: "Who",
-                        answer: "We are two developers who are passionate about coding. Read more about us in the contact us page! We would love to hear from you."
+                        answer: "We are two developers who are passionate about coding. Read more about us by clicking on contact us! We would love to hear from you."
                     },
                     {
                         question: "What",
-                        answer: "This is a website containing many computer science tutorials, written so that those with little experience can understand. Check the menu for available tutorials!"
+                        answer: "This is a website containing many computer science tutorials, written specifically so that those with little experience can understand. Check the menu for available tutorials!"
                     },
                     {
                         question: "Why",
-                        answer: "Here at Daily Innovation, we want to share our knowledge to educate and inspire future innovators"
+                        answer: "Here at Daily Innovation, we want to share our knowledge to inspire future innovators. We believe that learning coding gives you many freedoms."
                     }
                 ],
                 recommendationsList: [
