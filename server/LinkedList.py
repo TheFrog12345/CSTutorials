@@ -1,5 +1,6 @@
 import subprocess
 
+
 class Node:
     def __init__(self, name, next_node):
         self.name = name
@@ -7,7 +8,3 @@ class Node:
 
     def set_next(self, node):
         self.next = node
-
-
-
-
