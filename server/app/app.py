@@ -11,7 +11,7 @@ CORS(app, resources={r"/*": {"origins": ["http://localhost:8080"]}})
 app.config['SECRET_KEY'] = 'encrypt_website_for_security'
 
 
-@app.route('/info/<tutorial_name>', methods=['POST'])
+@app.route('/tutorials/<tutorial_name>', methods=['POST'])
 def get_tutorial(tutorial_name):
     return jsonify(db.get_tutorial(tutorial_name))
 
