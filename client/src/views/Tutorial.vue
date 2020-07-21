@@ -135,7 +135,7 @@
             getTutorialData: function(tutorialName) {
                 axios.post('http://127.0.0.1:5000/tutorials/'+tutorialName.toLowerCase())
                     .then((result) => {
-                        console.log(result)
+                        console.log(result.data)
                         this.tutorialNotFound = false
                         this.sections = []
                         this.title = ''
