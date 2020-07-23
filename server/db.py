@@ -1,6 +1,10 @@
 from mongoengine import *
 
-connect("TutorialArticles", host='localhost', port=27017)
+db_uri = "mongodb+srv://xinyanglu664:PuWxicgAcLILDAck@tutorialarticles.zotql.mongodb.net/TutorialArticles?retryWrites=true&w=majority"
+connect(host=db_uri)
+
+info = {"git": ["other", "Git: Version Control Software"]
+        }
 
 
 class TutorialPart(EmbeddedDocument):
@@ -50,7 +54,32 @@ def create_section(name, items):
 
 
 def get_tutorial(name):
-    if name == "git":
-        return Section.objects[0].to_json()
+    if name in info.keys():
+        for section in Section.objects:
+            if section.name == info[name][0]:
+                for tutorial in section.items:
+                    if tutorial.title == info[name][1]:
+                        return tutorial.to_mongo().to_dict()
+    else:
+        return "404"
 
 
+def get_all_tutorials():
+    sections = []
+    items = []
+    for s in Section.objects:
+        for t in s.items:
+            items.append({'name': t.name, 'active': ""})
+        sections.append({'name': s.name, 'items': items, 'active': "", 'display': False})
+        items = []
+    return sections
+
+
+def get_favorites():
+    tutorials = []
+    for s in Section.objects:
+        for t in s.items:
+            if str(t.favorite) == 'true':
+                tutorials.append({"name": t.name, "section": s.name})
+
+    return tutorials
