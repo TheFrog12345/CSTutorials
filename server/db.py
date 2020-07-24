@@ -29,6 +29,7 @@ def create_tutorial_part(group, text, description, showDetails, number):
 
 class Tutorial(EmbeddedDocument):
     title = StringField(required=True)
+    name = StringField(required=True)
     subtitle = StringField(required=False)
     date = StringField(required=True)
     favorite = BooleanField(required=True, default=False)

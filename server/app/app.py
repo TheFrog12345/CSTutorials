@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask import jsonify
-from bson.json_util import dumps
 from server import db
 
 app = Flask(__name__)
