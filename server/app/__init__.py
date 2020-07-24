@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask import jsonify
-from bson.json_util import dumps
-from server import db
+import db
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -25,7 +24,3 @@ def get_all_tutorials():
 @app.route('/getFavorites', methods=['POST'])
 def get_favorites():
     return jsonify(db.get_favorites())
-
-
-if __name__ == '__main__':
-    app.run(port=5000)

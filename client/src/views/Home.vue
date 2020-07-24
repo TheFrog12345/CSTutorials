@@ -68,7 +68,7 @@
 </template>
 
 <script>
-    //import axios from 'axios'
+    import axios from 'axios'
     import QACard from "@/components/QACard.vue"
     import RecommendationsBar from "@/components/RecommendationsBar.vue"
     import ListItems from "@/components/ListItems.vue"
@@ -141,16 +141,15 @@
                 this.getTimelineWidth()
             }
         },
-        mounted() {
-            /*
+        mounted() {/*
             axios.post('http://127.0.0.1:5000/getRecents')
                 .then((result) => {
                     this.timelineItems = result.data
-                })
+                })*/
             axios.post('http://127.0.0.1:5000/getFavorites')
                 .then((result) => {
                     this.recommendationsList = result.data
-                })*/
+                })
             this.getTimelineWidth()
         }
     }
