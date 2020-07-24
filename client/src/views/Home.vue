@@ -17,9 +17,6 @@
                     <label class="text-sm-h2 white--text" style="display: block">Coding is a freedom of design</label>
                     <br>
                     <label class="text-sm-h6 white--text" style="display: block">Learn about coding on this website!</label>
-                    <br>
-                    <br>
-                    <br>
                 </v-col>
             </v-row>
         </v-img>

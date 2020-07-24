@@ -16,9 +16,9 @@
                         alt="Vuetify Logo"
                         class="shrink mr-2"
                         contain
-                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+                        src="@/assets/logo.png"
                         transition="scale-transition"
-                        width="40"
+                        width="60"
                     />
                     <v-toolbar-title
                         class="mt-1"
@@ -300,7 +300,7 @@
 
 <style scoped>
     .home-button {
-        padding: 0 4px !important;
+        padding: 4px !important;
         height: auto !important;
     }
     .home-button.v-btn--active::before {
