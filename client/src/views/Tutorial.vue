@@ -68,6 +68,7 @@
                                     width="50%"
                                     class="ml-8"
                                     @click="part.showDetails=true"
+                                    transition="scale-transition"
                                 ></v-img>
                                 <span class="text-caption ml-8">
                                     {{ part.description }}
@@ -82,6 +83,7 @@
                                     <v-img
                                         :src='require("../assets/" + loadedParameter + "/" + part.text)'
                                         width="100%"
+                                        transition="scale-transition"
                                     ></v-img>
                                     <span class="text-md-h5 overlay-caption mt-6">
                                         {{ part.description }}
