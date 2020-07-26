@@ -67,12 +67,12 @@ def get_tutorial(name):
 
 def get_all_tutorials():
     sections = []
-    items = []
     for s in Section.objects:
+        items = []
         for t in s.items:
             items.append({'name': t.name, 'active': ""})
         sections.append({'name': s.name, 'items': items, 'active': "", 'display': False})
-        items = []
+        
     return sections
 
 
@@ -80,8 +80,8 @@ def get_favorites():
     tutorials = []
     for s in Section.objects:
         for t in s.items:
-            if str(t.favorite) == 'true':
-                tutorials.append({"name": t.name, "section": s.name})
+            if t.favorite == True:
+                tutorials.append({"name": t.name, "subtitle": t.date})
 
     return tutorials
 
