@@ -84,3 +84,13 @@ def get_favorites():
                 tutorials.append({"name": t.name, "section": s.name})
 
     return tutorials
+
+
+def get_recent_posts():
+    posts = []
+    for s in Section.objects:
+        for t in s.items:
+            posts.append({'date': t.date, 'name': t.name, 'section': s.name,
+                          'description': [t.tutorialParts[0], t.tutorialParts[1]]})
+
+    return sorted(posts, key=lambda k: k['date'])
