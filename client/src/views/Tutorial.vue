@@ -47,7 +47,8 @@
                             <span
                                 v-if="part.group=='paragraph'"
                                 class="mb-4 text-body-2"
-                            > {{ part.text }} </span>
+                                v-html="part.text"
+                            ></span>
                             <div
                                 v-if="part.group=='command'"
                                 class="ml-8 mb-4"
