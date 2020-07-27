@@ -45,8 +45,18 @@
                                 class="mb-4 text-h6 mt-8 section-header"
                             > {{ part.text }} <span class="section-anchor" :id="'header'+(part.number+1)"></span> </span>
                             <span
+                                v-if="part.group=='subheader'"
+                                class="mb-4 text-body-1"
+                            > {{ part.text }} </span>
+                            <span
                                 v-if="part.group=='paragraph'"
                                 class="mb-4 text-body-2"
+                                v-html="part.text"
+                            ></span>
+                            <span
+                                v-if="part.group=='list'"
+                                style="margin: -8px 0"
+                                class="ml-8"
                                 v-html="part.text"
                             ></span>
                             <div
@@ -71,9 +81,10 @@
                                     @click="part.showDetails=true"
                                     transition="scale-transition"
                                 ></v-img>
-                                <span class="text-caption ml-8">
-                                    {{ part.description }}
-                                </span>
+                                <span
+                                    class="text-caption ml-8"
+                                    v-html="part.description"
+                                ></span>
                                 <v-overlay
                                     v-model="part.showDetails"
                                     @click.native="part.showDetails=false"
@@ -86,9 +97,10 @@
                                         width="100%"
                                         transition="scale-transition"
                                     ></v-img>
-                                    <span class="text-md-h5 overlay-caption mt-6">
-                                        {{ part.description }}
-                                    </span>
+                                    <span
+                                        class="text-md-h5 overlay-caption mt-6"
+                                        v-html="part.description"
+                                    ></span>
                                 </v-overlay>
                             </div>
                         </div>
