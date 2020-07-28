@@ -177,7 +177,8 @@
 
                         this.loadedParameter = tutorialName.toLowerCase()
                     })
-                    .catch(() => {
+                    .catch((err) => {
+                        console.log(err)
                         this.tutorialNotFound = true
                         this.loadedParameter = tutorialName.toLowerCase()
                     })

@@ -47,7 +47,7 @@
                 >
                     <v-list-item-content>
                         <v-list-item-title> {{ item.name }} </v-list-item-title>
-                        <v-list-item-subtitle> {{ item.section }} </v-list-item-subtitle>
+                        <v-list-item-subtitle> {{ item.subtitle }} </v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -82,7 +82,7 @@
                     type: String,
                     required: true
                 },
-                section: {
+                subtitle: {
                     type: String,
                     required: false
                 }

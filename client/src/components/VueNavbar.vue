@@ -171,7 +171,7 @@
 </template>
 
 <script>
-    //import axios from 'axios'
+    import axios from 'axios'
     export default {
         name: "VueNavbar",
         data: () => {
@@ -180,49 +180,7 @@
                 isHomepage: true,
                 appBarColor: "",
                 windowWidth: window.innerWidth,
-                menuContent: [
-                    {
-                        name: "Python",
-                        items: [
-                            {
-                                name: "Syntax",
-                                active: ""
-                            }
-                        ],
-                        active: "",
-                        display: false
-                    },
-                    {
-                        name: "Data Structures",
-                        items: [
-                            {
-                                name: "Set",
-                                active: ""
-                            },
-                            {
-                                name: "Dictionary",
-                                active: ""
-                            },
-                            {
-                                name: "Linked List",
-                                active: ""
-                            }
-                        ],
-                        active: "",
-                        display: false
-                    },
-                    {
-                        name: "Other",
-                        items: [
-                            {
-                                name: "Git",
-                                active: ""
-                            }
-                        ],
-                        active: "",
-                        display: false
-                    }
-                ],
+                menuContent: [],
                 searchString: ""
             }
         },
@@ -288,11 +246,10 @@
             }
         },
         mounted() {
-            /*
             axios.post('http://127.0.0.1:5000/getTutorials')
                 .then((result) => {
                     this.menuContent = result.data
-                })*/
+                })
             this.checkIfHomepage(window.location.pathname)
         }
     }
