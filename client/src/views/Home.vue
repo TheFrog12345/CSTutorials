@@ -141,11 +141,22 @@
                 this.getTimelineWidth()
             }
         },
-        mounted() {/*
+        mounted() {
             axios.post('http://127.0.0.1:5000/getRecents')
                 .then((result) => {
+                    console.log(result.data)
                     this.timelineItems = result.data
-                })*/
+                    for (let i = 0; i < this.timelineItems.length; i++) {
+                        let date = this.timelineItems[i].date.split('/')
+                        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                        date[1] = months[Number(date[1])-1]
+                        this.timelineItems[i].date = date[1] + " " + date[2] + " " + date[0]
+
+                        let section = this.timelineItems[i].section
+                        section = section[0].toUpperCase() + section.substring(1)
+                        this.timelineItems[i].section = section
+                    }
+                })
             axios.post('http://127.0.0.1:5000/getFavorites')
                 .then((result) => {
                     this.recommendationsList = result.data

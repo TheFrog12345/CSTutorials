@@ -32,6 +32,7 @@ class Tutorial(EmbeddedDocument):
     name = StringField(required=True)
     subtitle = StringField(required=False)
     date = StringField(required=True)
+    description = StringField(required=True)
     favorite = BooleanField(required=True, default=False)
     tutorialParts = EmbeddedDocumentListField(required=True, document_type=TutorialPart)
 
@@ -91,6 +92,6 @@ def get_recent_posts():
     for s in Section.objects:
         for t in s.items:
             posts.append({'date': t.date, 'name': t.name, 'section': s.name,
-                          'description': [t.tutorialParts[0], t.tutorialParts[1]]})
+                          'description': t.description})
 
     return sorted(posts, key=lambda k: k['date'])
