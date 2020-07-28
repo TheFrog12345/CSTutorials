@@ -37,8 +37,8 @@ class Tutorial(EmbeddedDocument):
     tutorialParts = EmbeddedDocumentListField(required=True, document_type=TutorialPart)
 
 
-def create_tutorial(title, subtitle, date, favorite, tutorialParts):
-    tutorial = Tutorial(title=title, date=date, favorite=favorite, tutorialParts=tutorialParts)
+def create_tutorial(title, subtitle, date, description, favorite, tutorialParts):
+    tutorial = Tutorial(title=title, date=date, description=description, favorite=favorite, tutorialParts=tutorialParts)
     if subtitle:
         tutorial.subtitle = subtitle
 
