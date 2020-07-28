@@ -96,30 +96,8 @@
                         answer: "Here at Daily Innovation, we want to share our knowledge to inspire future innovators. We believe that learning coding gives you many freedoms."
                     }
                 ],
-                recommendationsList: [
-                    {
-                        name: "Set",
-                        section: "Data Structures"
-                    },
-                    {
-                        name: "Dictionary",
-                        section: "Data Structures"
-                    }
-                ],
-                timelineItems: [
-                    {
-                        date: "July 3 2020",
-                        name: "Dictionary",
-                        section: "Data Structures",
-                        description: "Dictionaries are a powerful tool"
-                    },
-                    {
-                        date: "July 1 2020",
-                        name: "Linked Lists",
-                        section: "Data Structures",
-                        description: "Linked lists are a nodal way to show an array"
-                    }
-                ]
+                recommendationsList: [],
+                timelineItems: []
             }
         },
         methods: {
