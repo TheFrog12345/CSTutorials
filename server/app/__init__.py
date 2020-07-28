@@ -25,3 +25,8 @@ def get_all_tutorials():
 @app.route('/getFavorites', methods=['POST'])
 def get_favorites():
     return jsonify(db.get_favorites())
+
+
+@app.route('/getRecents', methods=['POST'])
+def get_recents():
+    return jsonify(db.get_recent_posts())
