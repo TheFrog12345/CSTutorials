@@ -7,7 +7,7 @@ import db
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-CORS(app, resources={r"/*": {"origins": ["http://localhost:8080"]}})
+CORS(app, resources={r"/*": {"origins": ["*"]}})
 
 app.config['SECRET_KEY'] = 'encrypt_website_for_security'
 
