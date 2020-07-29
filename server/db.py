@@ -3,9 +3,6 @@ from mongoengine import *
 db_uri = "mongodb+srv://xinyanglu664:PuWxicgAcLILDAck@tutorialarticles.zotql.mongodb.net/TutorialArticles?retryWrites=true&w=majority"
 connect(host=db_uri)
 
-info = {"git": ["other", "Git: Version Control Software"]
-        }
-
 
 class TutorialPart(EmbeddedDocument):
     group = StringField(required=True, choices=("paragraph", "header", "image", "command"))
@@ -56,14 +53,12 @@ def create_section(name, items):
 
 
 def get_tutorial(name):
-    if name in info.keys():
-        for section in Section.objects:
-            if section.name == info[name][0]:
-                for tutorial in section.items:
-                    if tutorial.title == info[name][1]:
-                        return tutorial.to_mongo().to_dict()
-    else:
-        return "404"
+    for section in Section.objects:
+        for tutorial in section.items:
+            if tutorial.name == name:
+                return tutorial.to_mongo().to_dict()
+
+    return "404"
 
 
 def get_all_tutorials():
