@@ -161,7 +161,7 @@
                         this.title = result.data.title
                         this.subtitle = result.data.subtitle
                         this.date = result.data.date
-                        this.favorites = result.data.favorites
+                        this.favorites = result.data.favorite
                         this.tutorialParts = result.data.tutorialParts
 
                         this.sections.push({name: this.title, active: false})
