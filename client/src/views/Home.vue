@@ -114,6 +114,20 @@
                     this.cardCols = 4
                 }
                 this.getTimelineWidth()
+            },
+            capitalize: function(string) {
+                words = string.split(" ")
+                for (let i = 0; i < words.length; i++) {
+                    word = words[i][0].toUpperCase() + words[i].substring(1)
+                }
+                let newString = words.join(" ")
+                return newString
+            },
+            convertDate: function(numbers) {
+                let date = numbers.split('/')
+                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                date[1] = months[Number(date[1])-1]
+                return date[1] + " " + date[2] + " " + date[0]
             }
         },
         mounted() {
@@ -122,19 +136,27 @@
                     console.log(result.data)
                     this.timelineItems = result.data
                     for (let i = 0; i < this.timelineItems.length; i++) {
-                        let date = this.timelineItems[i].date.split('/')
-                        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                        date[1] = months[Number(date[1])-1]
-                        this.timelineItems[i].date = date[1] + " " + date[2] + " " + date[0]
-
-                        let section = this.timelineItems[i].section
-                        section = section[0].toUpperCase() + section.substring(1)
-                        this.timelineItems[i].section = section
+                        this.timelineItems[i].date = this.convertDate(this.timelineItems[i].date)
+                        this.timelineItems[i].section = this.capitalize(this.timelineItems[i].section)
+                        this.timelineItems[i].name = this.capitalize(this.timelineItems[i].name)
                     }
+                    console.log('success')
+                })
+                .catch((err) => {
+                    console.log(err)
                 })
             axios.post('http://127.0.0.1:5000/getFavorites')
                 .then((result) => {
+                    console.log(result.data)
                     this.recommendationsList = result.data
+                    for (let i = 0; i < this.recommendationsList.length; i++) {
+                        this.recommendationsList[i].name = this.capitalize(this.recommendationsList[i].name)
+                        this.recommendationsList[i].subtitle = this.convertDate(this.recommendationsList[i].subtitle)
+                    }
+                    console.log('success')
+                })
+                .catch((err) => {
+                    console.log(err)
                 })
             this.getTimelineWidth()
         }
