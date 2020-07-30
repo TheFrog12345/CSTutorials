@@ -116,9 +116,9 @@
                 this.getTimelineWidth()
             },
             capitalize: function(string) {
-                words = string.split(" ")
+                let words = string.split(" ")
                 for (let i = 0; i < words.length; i++) {
-                    word = words[i][0].toUpperCase() + words[i].substring(1)
+                    words[i] = words[i][0].toUpperCase() + words[i].substring(1)
                 }
                 let newString = words.join(" ")
                 return newString
@@ -127,7 +127,7 @@
                 let date = numbers.split('/')
                 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
                 date[1] = months[Number(date[1])-1]
-                return date[1] + " " + date[2] + " " + date[0]
+                return date[1] + " " + Number(date[2]) + " " + date[0]
             }
         },
         mounted() {

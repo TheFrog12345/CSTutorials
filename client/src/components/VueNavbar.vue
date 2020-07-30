@@ -240,9 +240,9 @@
                 }
             },
             capitalize: function(string) {
-                words = string.split(" ")
+                let words = string.split(" ")
                 for (let i = 0; i < words.length; i++) {
-                    word = words[i][0].toUpperCase() + words[i].substring(1)
+                    words[i] = words[i][0].toUpperCase() + words[i].substring(1)
                 }
                 let newString = words.join(" ")
                 return newString

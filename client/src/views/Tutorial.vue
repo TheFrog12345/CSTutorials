@@ -151,7 +151,7 @@
                 let date = numbers.split('/')
                 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
                 date[1] = months[Number(date[1])-1]
-                return date[1] + " " + date[2] + " " + date[0]
+                return date[1] + " " + Number(date[2]) + " " + date[0]
             },
             getTutorialData: function(tutorialName) {
                 axios.post('http://127.0.0.1:5000/'+tutorialName.toLowerCase())
