@@ -91,4 +91,4 @@ def get_recent_posts():
             posts.append({'date': t.date, 'name': t.name, 'section': s.name,
                           'description': t.description})
 
-    return sorted(posts, key=lambda k: k['date'])
+    return sorted(posts, key=lambda k: k['date'], reverse=True)
