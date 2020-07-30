@@ -238,6 +238,14 @@
                     this.isHomepage = false
                     this.appBarColor = 'primary'
                 }
+            },
+            capitalize: function(string) {
+                let words = string.split(" ")
+                for (let i = 0; i < words.length; i++) {
+                    words[i] = words[i][0].toUpperCase() + words[i].substring(1)
+                }
+                let newString = words.join(" ")
+                return newString
             }
         },
         watch: {
@@ -248,7 +256,18 @@
         mounted() {
             axios.post('http://127.0.0.1:5000/getTutorials')
                 .then((result) => {
+                    console.log(result.data)
                     this.menuContent = result.data
+                    for (let i = 0; i < this.menuContent.length; i++) {
+                        this.menuContent[i].name = this.capitalize(this.menuContent[i].name)
+                        for (let j = 0; j < this.menuContent[i].items.length; j++) {
+                            this.menuContent[i].items[j].name = this.capitalize(this.menuContent[i].items[j].name)
+                        }
+                    }
+                    console.log('success')
+                })
+                .catch((err) => {
+                    console.log(err)
                 })
             this.checkIfHomepage(window.location.pathname)
         }

@@ -147,9 +147,16 @@
                     previousDistance = offsetTop*-1
                 }
             },
+            convertDate: function(numbers) {
+                let date = numbers.split('/')
+                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                date[1] = months[Number(date[1])-1]
+                return date[1] + " " + Number(date[2]) + " " + date[0]
+            },
             getTutorialData: function(tutorialName) {
-                axios.post('http://127.0.0.1:5000/tutorials/'+tutorialName.toLowerCase())
+                axios.post('http://127.0.0.1:5000/'+tutorialName.toLowerCase())
                     .then((result) => {
+                        console.log(result.data)
                         this.tutorialNotFound = false
                         this.sections = []
                         this.title = ''
@@ -160,7 +167,7 @@
                         
                         this.title = result.data.title
                         this.subtitle = result.data.subtitle
-                        this.date = result.data.date
+                        this.date = this.convertDate(result.data.date)
                         this.favorites = result.data.favorite
                         this.tutorialParts = result.data.tutorialParts
 
@@ -173,9 +180,10 @@
 
                         setTimeout(() => {
                             this.checkSection()
-                        }, 0)
+                        }, 100)
 
                         this.loadedParameter = tutorialName.toLowerCase()
+                        console.log('success')
                     })
                     .catch((err) => {
                         console.log(err)
