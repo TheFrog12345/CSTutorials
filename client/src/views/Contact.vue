@@ -5,7 +5,7 @@
                 <v-col>
                     <v-list>
                         <v-list-item>
-                            <v-list-item-title class="text-sm-h4">
+                            <v-list-item-title class="text-h5 text-sm-h4">
                                 Meet the developers
                             </v-list-item-title>
                         </v-list-item>

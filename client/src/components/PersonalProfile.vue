@@ -1,21 +1,26 @@
 <template>
-    <v-container class="card-replicate">
+    <v-container
+        class="card-replicate"
+        v-resize="resize"
+    >
         <v-row class="information-row">
             <v-col
                 class="container-col"
                 lg="1"
-                cols="2"
+                sm="2"
+                cols="3"
             >
                 <v-img
                     height="100%"
                     width="100%"
-                    :src='require("../assets/" + photo)'
+                    :src='require("@/assets/" + photo)'
                 />
             </v-col>
             <v-col
                 class="container-col"
                 lg="9"
-                cols="8"
+                sm="8"
+                cols="9"
             >
                 <span class="text-h6">
                     {{ name }}
@@ -25,6 +30,7 @@
                 </span>
             </v-col>
             <v-col
+                v-if="windowWidth >= 600"
                 class="icon-col container-col"
                 cols="2"
             >
@@ -50,8 +56,40 @@
                 </div>
             </v-col>
         </v-row>
+        <v-row
+            v-if="windowWidth < 600"
+        >
+            <v-col
+                v-for="(contact, index) in contactIcons"
+                :key="index"
+                cols="4"
+                class="container-col icon-col"
+            >
+                <div class="icon-container">
+                    <v-tooltip
+                        bottom
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                icon
+                                v-on="on"
+                                v-bind="attrs"
+                                :href="contact.link"
+                                target="_blank"
+                            >
+                                <v-icon size="48px"> {{ contact.icon }} </v-icon>
+                            </v-btn>
+                        </template>
+                        <span> {{ contact.info }} </span>
+                    </v-tooltip>
+                </div>
+            </v-col>
+        </v-row>
         <v-row>
-            <v-col cols="10">
+            <v-col
+                sm="10"
+                cols="12"
+            >
                 <p
                     class="px-4"
                     v-for="(paragraph, index) in description"
@@ -67,6 +105,11 @@
 <script>
     export default {
         name: "PersonalProfile",
+        data: () => {
+            return {
+                windowWidth: window.innerWidth
+            }
+        },
         props: {
             photo: {
                 type: String,
@@ -99,6 +142,11 @@
                     type: String,
                     required: true
                 }
+            }
+        },
+        methods: {
+            resize: function() {
+                this.windowWidth = window.innerWidth
             }
         }
     }
