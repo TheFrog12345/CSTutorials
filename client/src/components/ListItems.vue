@@ -4,6 +4,7 @@
     >
         <v-timeline-item
             v-for="(item, index) in items"
+            right
             :key="index"
             :color="theme"
             :icon="item.icon"
@@ -77,6 +78,6 @@
 
 <style scoped>
     .v-timeline {
-        margin: 0 50px;
+        margin-right: 48px;
     }
 </style>

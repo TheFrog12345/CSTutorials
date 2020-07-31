@@ -1,6 +1,7 @@
 <template>
     <v-card
         height="fit-content"
+        style="position: absolute"
     >
         <v-navigation-drawer
             permanent

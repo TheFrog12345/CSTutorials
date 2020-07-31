@@ -45,18 +45,20 @@
             </v-row>
             <v-row class="mt-8">
                 <RecommendationsBar
+                    v-if="timelineWidth >= 900"
                     icon="mdi-star"
                     iconColor="yellow"
                     title="Personal Favorites"
                     subtitle="See our list of favorites below!"
                     :listItems="recommendationsList"
                     class="mt-4"
+                    style="z-index:2"
                 />
                 <v-col class="recents">
                     <ListItems
                         theme="green accent-4"
                         :items="timelineItems"
-                        :dense="timelineWidth < 800"
+                        :dense="timelineWidth < 900"
                     />
                 </v-col>
             </v-row>
@@ -102,7 +104,7 @@
         },
         methods: {
             getTimelineWidth: function() {
-                this.timelineWidth = getComputedStyle(document.querySelector('.recents')).width
+                this.timelineWidth = getComputedStyle(document.querySelector('.recents').parentNode).width
                 this.timelineWidth = Number(this.timelineWidth.substring(0, this.timelineWidth.length-2))
             },
             resize: function() {
