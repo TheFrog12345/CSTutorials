@@ -10,7 +10,9 @@
             <VueScrollspy
                 :sections="sections"
             />
-            <v-container>
+            <v-container
+                class="px-16"
+            >
                 <v-row>
                     <v-col>
                         <div class="ml-2">
