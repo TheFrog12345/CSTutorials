@@ -58,6 +58,7 @@
         </v-row>
         <v-row
             v-if="windowWidth < 600"
+            class="my-2"
         >
             <v-col
                 v-for="(contact, index) in contactIcons"
