@@ -46,7 +46,7 @@
                             > {{ part.text }} <span class="section-anchor" :id="'header'+(part.number+1)"></span> </span>
                             <span
                                 v-if="part.group=='subheader'"
-                                class="mb-4 text-body-1"
+                                class="mb-4 mt-6 text-body-1"
                             > {{ part.text }} </span>
                             <span
                                 v-if="part.group=='paragraph'"
@@ -75,7 +75,7 @@
                                 class="ml-0 mb-4"
                             >
                                 <v-img
-                                    :src='require("../assets/" + loadedParameter + "/" + part.text)'
+                                    :src='require("@/assets/" + loadedParameter + "/" + part.text)'
                                     width="50%"
                                     class="ml-8"
                                     @click="part.showDetails=true"
@@ -93,7 +93,7 @@
                                     opacity="0.9"
                                 >
                                     <v-img
-                                        :src='require("../assets/" + loadedParameter + "/" + part.text)'
+                                        :src='require("@/assets/" + loadedParameter + "/" + part.text)'
                                         width="100%"
                                         transition="scale-transition"
                                     ></v-img>
@@ -154,7 +154,7 @@
                 return date[1] + " " + Number(date[2]) + " " + date[0]
             },
             getTutorialData: function(tutorialName) {
-                axios.post('http://127.0.0.1:5000/'+tutorialName.toLowerCase())
+                axios.post('http://127.0.0.1:5000/tutorials/'+tutorialName.toLowerCase())
                     .then((result) => {
                         console.log(result.data)
                         this.tutorialNotFound = false

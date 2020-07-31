@@ -72,7 +72,7 @@
                         ]
                     },
                     {
-                        photo: "yang.jpg",
+                        photo: "yang.png",
                         name: 'Yang Lu',
                         role: 'Website UI designer and backend developer. Tutorial writer.',
                         contactIcons: [
