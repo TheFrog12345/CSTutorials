@@ -23,6 +23,8 @@
                 :contactIcons="contributor.contactIcons"
                 class="mt-8"
             />
+            <v-divider class="mt-8 mb-8"/>
+            <span class="text-h6" v-html="'We would like to express a special thank you to <a target=_blank href=https://www.linkedin.com/in/frank-liu-2b82b5179/>Frank Liu</a> for having taught both of us data structures!'"></span>
         </v-container>
     </div>
 </template>

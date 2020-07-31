@@ -2,6 +2,7 @@
     <div
         class="mt-14"
         v-scroll="checkSection"
+        v-resize="resize"
     >
         <div v-if="tutorialNotFound" class="text-center">
             <span class="text-overline mt-16">Error 404: Tutorial page not found </span>
@@ -11,7 +12,7 @@
                 :sections="sections"
             />
             <v-container
-                class="px-16"
+                :class="this.windowWidth < 600 ? '':'px-16'"
             >
                 <v-row>
                     <v-col>
@@ -57,8 +58,8 @@
                             ></span>
                             <span
                                 v-if="part.group=='list'"
-                                style="margin: -8px 0"
-                                class="ml-8"
+                                style="margin-top: -8px; margin-bottom: 12px"
+                                class="ml-8 text-body-2"
                                 v-html="part.text"
                             ></span>
                             <div
@@ -123,6 +124,7 @@
         },
         data: () => {
             return {
+                windowWidth: window.innerWidth,
                 loadedParameter: '',
                 tutorialNotFound: false,
                 sections: [],
@@ -134,6 +136,9 @@
             }
         },
         methods: {
+            resize: function() {
+                this.windowWidth = window.innerWidth
+            },
             checkSection: function() {
                 let targets = document.querySelectorAll('.section-header')
                 let previousDistance = 10000

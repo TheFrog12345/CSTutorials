@@ -41,7 +41,7 @@
         </v-container>
         <v-container fluid class="mt-8">
             <v-row style="justify-content: center">
-                <span class="text-sm-h2">Check out our posts!</span>
+                <span class="text-h5 text-sm-h2">Check out our posts!</span>
             </v-row>
             <v-row class="mt-8">
                 <RecommendationsBar
