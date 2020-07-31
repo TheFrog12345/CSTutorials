@@ -87,7 +87,7 @@
                 textInformation: [
                     {
                         question: "Who",
-                        answer: "We are two developers who are passionate about coding. Read more about us by clicking on contact us! We would love to hear from you."
+                        answer: "We are two developers with a passion for coding. Read more about us by clicking contact us in the navigation bar! We would love to hear from you."
                     },
                     {
                         question: "What",

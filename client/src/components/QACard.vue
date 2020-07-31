@@ -4,8 +4,6 @@
     >
         <v-card
             :elevation="hover ? elevation+6:elevation"
-            hover
-            ripple
         >
             <v-list-item>
                 <v-list-item-title class="headline">
