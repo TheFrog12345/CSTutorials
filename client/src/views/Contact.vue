@@ -5,7 +5,7 @@
                 <v-col>
                     <v-list>
                         <v-list-item>
-                            <v-list-item-title class="text-sm-h4">
+                            <v-list-item-title class="text-h5 text-sm-h4">
                                 Meet the developers
                             </v-list-item-title>
                         </v-list-item>
@@ -23,6 +23,8 @@
                 :contactIcons="contributor.contactIcons"
                 class="mt-8"
             />
+            <v-divider class="mt-8 mb-8"/>
+            <span class="text-h6" v-html="'We would like to express a special thank you to <a target=_blank href=https://www.linkedin.com/in/frank-liu-2b82b5179/>Frank Liu</a> for having taught both of us data structures!'"></span>
         </v-container>
     </div>
 </template>
@@ -72,9 +74,13 @@
                         ]
                     },
                     {
-                        photo: "yang.jpg",
+                        photo: "yang.png",
                         name: 'Yang Lu',
                         role: 'Website UI designer and backend developer. Tutorial writer.',
+                        description: [
+                            `Hi there! My name is Yang Lu and I’ll be starting my first year of Computer Engineering at the University of Waterloo in September. I’ve always been passionate about building things and problem-solving and seeing that computer science can be used as a tool to drive my passion, it greatly motivates me to learn more about it. I will use my skills in engineering and computer science to solve problems around me and make the world a better place.`,
+                            `In my free time, you can find me playing chess online, relaxing with some video games, or messing around on the piano, among other things. Contact me anytime, I’ll be happy to hear from you!`
+                        ],
                         contactIcons: [
                             {
                                 icon: 'mdi-github',

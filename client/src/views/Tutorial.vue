@@ -2,6 +2,7 @@
     <div
         class="mt-14"
         v-scroll="checkSection"
+        v-resize="resize"
     >
         <div v-if="tutorialNotFound" class="text-center">
             <span class="text-overline mt-16">Error 404: Tutorial page not found </span>
@@ -10,7 +11,9 @@
             <VueScrollspy
                 :sections="sections"
             />
-            <v-container>
+            <v-container
+                :class="this.windowWidth < 600 ? '':'px-16'"
+            >
                 <v-row>
                     <v-col>
                         <div class="ml-2">
@@ -46,7 +49,7 @@
                             > {{ part.text }} <span class="section-anchor" :id="'header'+(part.number+1)"></span> </span>
                             <span
                                 v-if="part.group=='subheader'"
-                                class="mb-4 text-body-1"
+                                class="mb-4 mt-6 text-body-1"
                             > {{ part.text }} </span>
                             <span
                                 v-if="part.group=='paragraph'"
@@ -55,8 +58,8 @@
                             ></span>
                             <span
                                 v-if="part.group=='list'"
-                                style="margin: -8px 0"
-                                class="ml-8"
+                                style="margin-top: -8px; margin-bottom: 12px"
+                                class="ml-8 text-body-2"
                                 v-html="part.text"
                             ></span>
                             <div
@@ -70,13 +73,34 @@
                                     ({{ part.description }})
                                 </span>
                             </div>
+                            <table v-if="part.group=='table'" class="mb-4" :style="{width: windowWidth-40}">
+                                <tr>
+                                    <th
+                                        v-for="(header, index1) in part.description.split(',')"
+                                        :key="index1"
+                                    >
+                                        {{ header }}
+                                    </th>
+                                </tr>
+                                <tr
+                                    v-for="(row, index1) in part.text.split('/')"
+                                    :key="index1"
+                                >
+                                    <td
+                                        v-for="(col, index2) in row.split(',')"
+                                        :key="index2"
+                                    >
+                                        {{ col }}
+                                    </td>
+                                </tr>
+                            </table>
                             <div
                                 v-if="part.group=='image'"
                                 class="ml-0 mb-4"
                             >
                                 <v-img
-                                    :src='require("../assets/" + loadedParameter + "/" + part.text)'
-                                    width="50%"
+                                    :src='require("@/assets/" + loadedParameter + "/" + part.text)'
+                                    :width="windowWidth < 600 ? windowWidth-104:'50%'"
                                     class="ml-8"
                                     @click="part.showDetails=true"
                                     transition="scale-transition"
@@ -93,7 +117,7 @@
                                     opacity="0.9"
                                 >
                                     <v-img
-                                        :src='require("../assets/" + loadedParameter + "/" + part.text)'
+                                        :src='require("@/assets/" + loadedParameter + "/" + part.text)'
                                         width="100%"
                                         transition="scale-transition"
                                     ></v-img>
@@ -121,6 +145,7 @@
         },
         data: () => {
             return {
+                windowWidth: window.innerWidth,
                 loadedParameter: '',
                 tutorialNotFound: false,
                 sections: [],
@@ -132,6 +157,9 @@
             }
         },
         methods: {
+            resize: function() {
+                this.windowWidth = window.innerWidth
+            },
             checkSection: function() {
                 let targets = document.querySelectorAll('.section-header')
                 let previousDistance = 10000
@@ -154,7 +182,7 @@
                 return date[1] + " " + Number(date[2]) + " " + date[0]
             },
             getTutorialData: function(tutorialName) {
-                axios.post('http://127.0.0.1:5000/'+tutorialName.toLowerCase())
+                axios.post('http://127.0.0.1:5000/tutorials/'+tutorialName.toLowerCase())
                     .then((result) => {
                         console.log(result.data)
                         this.tutorialNotFound = false
@@ -232,5 +260,13 @@
     }
     .tutorials .v-image.ml-8:hover {
         cursor: url('../assets/magnify.png'), auto;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 16px;
+    }
+    th {
+        text-align: left;
     }
 </style>

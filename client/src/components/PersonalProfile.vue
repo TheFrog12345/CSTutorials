@@ -1,21 +1,26 @@
 <template>
-    <v-container class="card-replicate">
+    <v-container
+        class="card-replicate"
+        v-resize="resize"
+    >
         <v-row class="information-row">
             <v-col
                 class="container-col"
                 lg="1"
-                cols="2"
+                sm="2"
+                cols="3"
             >
                 <v-img
                     height="100%"
                     width="100%"
-                    :src='require("../assets/" + photo)'
+                    :src='require("@/assets/" + photo)'
                 />
             </v-col>
             <v-col
                 class="container-col"
                 lg="9"
-                cols="8"
+                sm="8"
+                cols="9"
             >
                 <span class="text-h6">
                     {{ name }}
@@ -25,6 +30,7 @@
                 </span>
             </v-col>
             <v-col
+                v-if="windowWidth >= 600"
                 class="icon-col container-col"
                 cols="2"
             >
@@ -50,8 +56,37 @@
                 </div>
             </v-col>
         </v-row>
+        <v-row
+            v-if="windowWidth < 600"
+            class="my-2"
+        >
+            <v-col
+                v-for="(contact, index) in contactIcons"
+                :key="index"
+                cols="4"
+                class="container-col icon-col"
+            >
+                <div class="icon-container">
+                    <div class="icon-col">
+                        <v-btn
+                            icon
+                            :href="contact.link"
+                            target="_blank"
+                        >
+                            <v-icon size="48px"> {{ contact.icon }} </v-icon>
+                        </v-btn>
+                    </div>
+                    <div class="icon-col">
+                        <span v-if="index==1" class="text-body-2"> {{ contact.info }} </span>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
         <v-row>
-            <v-col cols="10">
+            <v-col
+                sm="10"
+                cols="12"
+            >
                 <p
                     class="px-4"
                     v-for="(paragraph, index) in description"
@@ -67,6 +102,11 @@
 <script>
     export default {
         name: "PersonalProfile",
+        data: () => {
+            return {
+                windowWidth: window.innerWidth
+            }
+        },
         props: {
             photo: {
                 type: String,
@@ -99,6 +139,11 @@
                     type: String,
                     required: true
                 }
+            }
+        },
+        methods: {
+            resize: function() {
+                this.windowWidth = window.innerWidth
             }
         }
     }
