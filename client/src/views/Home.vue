@@ -10,18 +10,18 @@
                 style="height: 100%"
             >
                 <v-col
-                    cols="8"
-                    offset="2"
+                    cols="10"
+                    offset="1"
                     align-self="center"
                 >
-                    <label class="text-sm-h2 white--text" style="display: block">Coding is a freedom of design</label>
+                    <label class="text-h6 text-sm-h4 text-md-h2 white--text" style="display: block">Coding is a freedom of design</label>
                     <br>
-                    <label class="text-sm-h6 white--text" style="display: block">Learn about coding on this website!</label>
+                    <label class="text-body-2 text-sm-h6 white--text" style="display: block">Learn about coding on this website!</label>
                 </v-col>
             </v-row>
         </v-img>
         <v-row style="justify-content: center">
-            <span class="text-subtitle-1" style="padding: 0 50px;">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
+            <span class="text-body-2 text-sm-subtitle-1" style="padding: 0 50px;">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
         </v-row>
         <v-container class="mt-4">
             <v-row class="text-center">
@@ -54,7 +54,7 @@
                     class="mt-4"
                     style="z-index:2"
                 />
-                <v-col class="recents">
+                <v-col ref="recents">
                     <ListItems
                         theme="green accent-4"
                         :items="timelineItems"
@@ -104,7 +104,7 @@
         },
         methods: {
             getTimelineWidth: function() {
-                this.timelineWidth = getComputedStyle(document.querySelector('.recents').parentNode).width
+                this.timelineWidth = getComputedStyle(this.$refs["recents"]).width
                 this.timelineWidth = Number(this.timelineWidth.substring(0, this.timelineWidth.length-2))
             },
             resize: function() {
