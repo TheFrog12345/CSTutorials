@@ -77,6 +77,10 @@
                         photo: "yang.png",
                         name: 'Yang Lu',
                         role: 'Website UI designer and backend developer. Tutorial writer.',
+                        description: [
+                            `Hi there! My name is Yang Lu and I’ll be starting my first year of Computer Engineering at the University of Waterloo in September. I’ve always been passionate about building things and problem-solving and seeing that computer science can be used as a tool to drive my passion, it greatly motivates me to learn more about it. I will use my skills in engineering and computer science to solve problems around me and make the world a better place.`,
+                            `In my free time, you can find me playing chess online, relaxing with some video games, or messing around on the piano, among other things. Contact me anytime, I’ll be happy to hear from you!`
+                        ],
                         contactIcons: [
                             {
                                 icon: 'mdi-github',
