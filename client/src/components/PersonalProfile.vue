@@ -67,22 +67,18 @@
                 class="container-col icon-col"
             >
                 <div class="icon-container">
-                    <v-tooltip
-                        bottom
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                icon
-                                v-on="on"
-                                v-bind="attrs"
-                                :href="contact.link"
-                                target="_blank"
-                            >
-                                <v-icon size="48px"> {{ contact.icon }} </v-icon>
-                            </v-btn>
-                        </template>
-                        <span> {{ contact.info }} </span>
-                    </v-tooltip>
+                    <div class="icon-col">
+                        <v-btn
+                            icon
+                            :href="contact.link"
+                            target="_blank"
+                        >
+                            <v-icon size="48px"> {{ contact.icon }} </v-icon>
+                        </v-btn>
+                    </div>
+                    <div class="icon-col">
+                        <span v-if="index==1" class="text-body-2"> {{ contact.info }} </span>
+                    </div>
                 </div>
             </v-col>
         </v-row>
