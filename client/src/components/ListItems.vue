@@ -80,4 +80,15 @@
     .v-timeline {
         margin-right: 48px;
     }
+    @media only screen and (min-width: 860px) {
+        .v-timeline {
+            width: 75%;
+            min-width: 800px;
+        }
+    }
+    @media only screen and (max-width: 860px) and (min-width: 700px) {
+        .v-timeline {
+            margin-left: -30%;
+        }
+    }
 </style>
