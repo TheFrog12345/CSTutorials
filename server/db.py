@@ -5,7 +5,7 @@ connect(host=db_uri)
 
 
 class TutorialPart(EmbeddedDocument):
-    group = StringField(required=True, choices=("paragraph", "header", "image", "command", "subheader"))
+    group = StringField(required=True, choices=("paragraph", "header", "image", "command", "subheader", "list"))
     text = StringField(required=True)
     description = StringField(required=False)
     showDetails = BooleanField(required=False, default=False)
@@ -29,6 +29,7 @@ def create_tutorial_part(group, text, description, number):
 class Tutorial(EmbeddedDocument):
     title = StringField(required=True)
     name = StringField(required=True)
+    order = IntField(required=True)
     subtitle = StringField(required=False)
     date = StringField(required=True)
     description = StringField(required=True)
@@ -47,6 +48,7 @@ def create_tutorial(title, name, subtitle, date, description, favorite, tutorial
 class Section(Document):
     name = StringField(required=True)
     items = EmbeddedDocumentListField(required=True, document_type=Tutorial)
+    order = IntField(required=True)
 
 
 def create_section(name, items):
