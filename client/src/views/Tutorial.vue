@@ -66,32 +66,37 @@
                                 v-if="part.group=='command'"
                                 class="ml-8 mb-4"
                             >
-                                <span class="text-body-2 command">
-                                    {{ part.text }}
-                                </span>
-                                <span class="text-caption" v-if="part.description">
-                                    ({{ part.description }})
-                                </span>
+                                <span
+                                    class="text-body-2 command"
+                                    v-html="part.text"
+                                ></span>
+                                <span
+                                    class="text-caption"
+                                    v-if="part.description"
+                                    v-html="part.description"
+                                ></span>
                             </div>
-                            <table v-if="part.group=='table'" class="mb-4" :style="{width: windowWidth-40}">
+                            <table
+                                v-if="part.group=='table'"
+                                class="mb-4"
+                                :style="{width: windowWidth-40}"
+                            >
                                 <tr>
                                     <th
-                                        v-for="(header, index1) in part.description.split(',')"
+                                        v-for="(header, index1) in part.description.split(';')"
                                         :key="index1"
-                                    >
-                                        {{ header }}
-                                    </th>
+                                        v-html="header"
+                                    ></th>
                                 </tr>
                                 <tr
                                     v-for="(row, index1) in part.text.split('/')"
                                     :key="index1"
                                 >
                                     <td
-                                        v-for="(col, index2) in row.split(',')"
+                                        v-for="(col, index2) in row.split(';')"
                                         :key="index2"
-                                    >
-                                        {{ col }}
-                                    </td>
+                                        v-html="col"
+                                    ></td>
                                 </tr>
                             </table>
                             <div
