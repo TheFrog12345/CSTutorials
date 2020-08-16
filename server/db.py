@@ -37,8 +37,8 @@ class Tutorial(EmbeddedDocument):
     tutorialParts = EmbeddedDocumentListField(required=True, document_type=TutorialPart)
 
 
-def create_tutorial(title, name, subtitle, date, description, favorite, tutorialParts):
-    tutorial = Tutorial(title=title, name=name,date=date, description=description, favorite=favorite, tutorialParts=tutorialParts)
+def create_tutorial(title, name, subtitle, date, description, favorite, tutorialParts, order):
+    tutorial = Tutorial(title=title, name=name,date=date, description=description, favorite=favorite, tutorialParts=tutorialParts,order=order)
     if subtitle:
         tutorial.subtitle = subtitle
 
@@ -51,8 +51,8 @@ class Section(Document):
     order = IntField(required=True)
 
 
-def create_section(name, items):
-    section = Section(name=name, items=items)
+def create_section(name, items, order):
+    section = Section(name=name, items=items,order=order)
     return section
 
 
