@@ -5,7 +5,7 @@ connect(host=db_uri)
 
 
 class TutorialPart(EmbeddedDocument):
-    group = StringField(required=True, choices=("paragraph", "header", "image", "command", "subheader", "list"))
+    group = StringField(required=True, choices=("paragraph", "header", "image", "command", "subheader", "list", "table"))
     text = StringField(required=True)
     description = StringField(required=False)
     showDetails = BooleanField(required=False, default=False)
@@ -70,10 +70,11 @@ def get_all_tutorials():
     for s in Section.objects:
         items = []
         for t in s.items:
-            items.append({'name': t.name, 'active': ""})
-        sections.append({'name': s.name, 'items': items, 'active': "", 'display': False})
+            items.append({'name': t.name, 'order': t.order, 'active': ""})
+        sorted(items, key=lambda k: k['order'])
+        sections.append({'name': s.name, 'items': items, 'order': s.order, 'active': "", 'display': False})
         
-    return sections
+    return sorted(sections, key=lambda k: k['order'])
 
 
 def get_favorites():
@@ -83,7 +84,7 @@ def get_favorites():
             if t.favorite == True:
                 tutorials.append({"name": t.name, "subtitle": t.date})
 
-    return tutorials
+    return sorted(tutorials, key=lambda k: k['subtitle'], reverse=True)
 
 
 def get_recent_posts():

@@ -45,7 +45,7 @@
             </v-row>
             <v-row class="mt-8">
                 <RecommendationsBar
-                    v-if="timelineWidth >= 900"
+                    v-if="windowWidth >= 860"
                     icon="mdi-star"
                     iconColor="yellow"
                     title="Personal Favorites"
@@ -58,7 +58,7 @@
                     <ListItems
                         theme="green accent-4"
                         :items="timelineItems"
-                        :dense="timelineWidth < 900"
+                        :dense="windowWidth < 700"
                     />
                 </v-col>
             </v-row>
@@ -83,7 +83,6 @@
                 windowWidth: window.innerWidth,
                 windowHeight: window.innerHeight,
                 cardCols: 4,
-                timelineWidth: 0,
                 textInformation: [
                     {
                         question: "Who",
@@ -103,10 +102,6 @@
             }
         },
         methods: {
-            getTimelineWidth: function() {
-                this.timelineWidth = getComputedStyle(this.$refs["recents"]).width
-                this.timelineWidth = Number(this.timelineWidth.substring(0, this.timelineWidth.length-2))
-            },
             resize: function() {
                 this.windowWidth = window.innerWidth
                 this.windowHeight = window.innerHeight
@@ -115,7 +110,6 @@
                 } else {
                     this.cardCols = 4
                 }
-                this.getTimelineWidth()
             },
             capitalize: function(string) {
                 let words = string.split(" ")
@@ -127,7 +121,7 @@
             },
             convertDate: function(numbers) {
                 let date = numbers.split('/')
-                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
                 date[1] = months[Number(date[1])-1]
                 return date[1] + " " + Number(date[2]) + " " + date[0]
             }
@@ -160,7 +154,6 @@
                 .catch((err) => {
                     console.log(err)
                 })
-            this.getTimelineWidth()
         }
     }
 </script>
