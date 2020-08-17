@@ -79,7 +79,7 @@
                             <table
                                 v-if="part.group=='table'"
                                 class="mb-4"
-                                :style="{width: windowWidth-40}"
+                                :style="{width: windowWidth-40+'px'}"
                             >
                                 <tr>
                                     <th
@@ -124,6 +124,8 @@
                                     <v-img
                                         :src='require("@/assets/" + loadedParameter + "/" + part.text)'
                                         width="100%"
+                                        :style="{maxHeight: windowHeight-150+'px'}"
+                                        contain
                                         transition="scale-transition"
                                     ></v-img>
                                     <span
@@ -151,6 +153,7 @@
         data: () => {
             return {
                 windowWidth: window.innerWidth,
+                windowHeight: window.innerHeight,
                 loadedParameter: '',
                 tutorialNotFound: false,
                 sections: [],
@@ -164,6 +167,7 @@
         methods: {
             resize: function() {
                 this.windowWidth = window.innerWidth
+                this.windowHeight = window.innerHeight
             },
             checkSection: function() {
                 let targets = document.querySelectorAll('.section-header')
@@ -242,7 +246,6 @@
 <style>
     .tutorial-overlay .v-overlay__content {
         width: 90% !important;
-        max-width: 960px !important;
     }
 </style>
 

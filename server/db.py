@@ -71,8 +71,7 @@ def get_all_tutorials():
         items = []
         for t in s.items:
             items.append({'name': t.name, 'order': t.order, 'active': ""})
-        sorted(items, key=lambda k: k['order'])
-        sections.append({'name': s.name, 'items': items, 'order': s.order, 'active': "", 'display': False})
+        sections.append({'name': s.name, 'items': sorted(items, key=lambda k: k['order']), 'order': s.order, 'active': "", 'display': False})
         
     return sorted(sections, key=lambda k: k['order'])
 
