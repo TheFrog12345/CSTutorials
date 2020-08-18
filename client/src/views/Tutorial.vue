@@ -60,6 +60,7 @@
                                 v-if="part.group=='list'"
                                 style="margin-top: -8px; margin-bottom: 12px"
                                 class="ml-8 text-body-2"
+                                :class="part.class"
                                 v-html="part.text"
                             ></span>
                             <div
@@ -79,7 +80,7 @@
                             <table
                                 v-if="part.group=='table'"
                                 class="mb-4"
-                                :style="{width: windowWidth-40+'px'}"
+                                ref="table"
                             >
                                 <tr>
                                     <th
@@ -168,20 +169,43 @@
             resize: function() {
                 this.windowWidth = window.innerWidth
                 this.windowHeight = window.innerHeight
+                if (this.$refs.table) {
+                    for (let i = 0; i < this.$refs["table"].length; i++) {
+                        let tableWidth = 8
+                        if (this.windowWidth >= 1264) {
+                            tableWidth += this.windowWidth - 256
+                            tableWidth -= this.$refs["table"][i].getBoundingClientRect().left * 2 - 512
+                        } else {
+                            tableWidth += this.windowWidth
+                            tableWidth -= this.$refs["table"][i].getBoundingClientRect().left * 2
+                        }
+                        this.$refs["table"][i].width = tableWidth
+                    }
+                } else {
+                    setTimeout(() => {
+                        this.resize()
+                    }, 50)
+                }
             },
             checkSection: function() {
                 let targets = document.querySelectorAll('.section-header')
-                let previousDistance = 10000
-                for (let i = 0; i < targets.length; i++) {
-                    let offsetTop = targets[i].getBoundingClientRect().top-56
-                    if (offsetTop >= 0) {
-                        for (let j = 0; j < this.sections.length; j++) {
-                            this.sections[j].active = false
+                if (targets) {
+                    let previousDistance = 10000
+                    for (let i = 0; i < targets.length; i++) {
+                        let offsetTop = targets[i].getBoundingClientRect().top-56
+                        if (offsetTop >= 0) {
+                            for (let j = 0; j < this.sections.length; j++) {
+                                this.sections[j].active = false
+                            }
+                            offsetTop < previousDistance ? this.sections[i].active = true:this.sections[i-1].active = true
+                            break
                         }
-                        offsetTop < previousDistance ? this.sections[i].active = true:this.sections[i-1].active = true
-                        break
+                        previousDistance = offsetTop*-1
                     }
-                    previousDistance = offsetTop*-1
+                } else {
+                    setTimeout(() => {
+                        this.checkSection()
+                    }, 50)
                 }
             },
             convertDate: function(numbers) {
@@ -215,9 +239,7 @@
                             }
                         }
 
-                        setTimeout(() => {
-                            this.checkSection()
-                        }, 100)
+                        this.checkSection()
 
                         this.loadedParameter = tutorialName.toLowerCase()
                         console.log('success')
@@ -276,5 +298,10 @@
     }
     th {
         text-align: left;
+    }
+    .bolded-list {
+        font-weight: bold;
+        margin-top: 0px !important;
+        margin-bottom: 16px !important;
     }
 </style>
