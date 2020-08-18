@@ -86,6 +86,7 @@
                                     <th
                                         v-for="(header, index1) in part.description.split(';')"
                                         :key="index1"
+                                        :style="index1 == 0 ? {width: '30%'}:{width: '70%'}"
                                         v-html="header"
                                     ></th>
                                 </tr>
