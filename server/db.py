@@ -6,13 +6,14 @@ connect(host=db_uri)
 
 class TutorialPart(EmbeddedDocument):
     group = StringField(required=True, choices=("paragraph", "header", "image", "command", "subheader", "list", "table"))
+    customStyle = StringField(required=False)
     text = StringField(required=True)
     description = StringField(required=False)
     showDetails = BooleanField(required=False, default=False)
     number = IntField(required=False)
 
 
-def create_tutorial_part(group, text, description, number):
+def create_tutorial_part(group, text, description, number, customStyle):
     part = TutorialPart(group=group, text=text)
     if description:
         part.description = description
@@ -22,6 +23,8 @@ def create_tutorial_part(group, text, description, number):
         part.showDetails = None
     if number:
         part.number = number
+    if customStyle:
+        part.customStyle = customStyle
 
     return part
 
