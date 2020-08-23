@@ -7,7 +7,7 @@
         <div v-if="tutorialNotFound" class="text-center">
             <span class="text-overline mt-16">Error 404: Tutorial page not found </span>
         </div>
-        <div v-if="!tutorialNotFound">
+        <div v-else>
             <VueScrollspy
                 :sections="sections"
             />
@@ -60,7 +60,7 @@
                                 v-if="part.group=='list'"
                                 style="margin-top: -8px; margin-bottom: 12px"
                                 class="ml-8 text-body-2"
-                                :class="part.class"
+                                :class="part.customStyles"
                                 v-html="part.text"
                             ></span>
                             <div
