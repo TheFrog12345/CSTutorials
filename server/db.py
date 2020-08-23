@@ -6,7 +6,7 @@ connect(host=db_uri)
 
 class TutorialPart(EmbeddedDocument):
     group = StringField(required=True, choices=("paragraph", "header", "image", "command", "subheader", "list", "table"))
-    customStyle = StringField(required=False)
+    customStyles = StringField(required=False)
     text = StringField(required=True)
     description = StringField(required=False)
     showDetails = BooleanField(required=False, default=False)
