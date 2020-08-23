@@ -91,7 +91,7 @@
                                     ></th>
                                 </tr>
                                 <tr
-                                    v-for="(row, index1) in part.text.split('/')"
+                                    v-for="(row, index1) in part.text.split('~')"
                                     :key="index1"
                                 >
                                     <td
@@ -170,15 +170,16 @@
             resize: function() {
                 this.windowWidth = window.innerWidth
                 this.windowHeight = window.innerHeight
+                const scrollbarWidth = this.windowWidth - document.body.clientWidth
                 if (this.$refs.table) {
                     for (let i = 0; i < this.$refs["table"].length; i++) {
-                        let tableWidth = 8
+                        let tableWidth = 8-scrollbarWidth
                         if (this.windowWidth >= 1264) {
                             tableWidth += this.windowWidth - 256
                             tableWidth -= this.$refs["table"][i].getBoundingClientRect().left * 2 - 512
                         } else {
                             tableWidth += this.windowWidth
-                            tableWidth -= this.$refs["table"][i].getBoundingClientRect().left * 2
+                            tableWidth -= this.$refs["table"][i].getBoundingClientRect().left * 2 + 8
                         }
                         this.$refs["table"][i].width = tableWidth
                     }
