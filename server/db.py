@@ -6,13 +6,14 @@ connect(host=db_uri)
 
 class TutorialPart(EmbeddedDocument):
     group = StringField(required=True, choices=("paragraph", "header", "image", "command", "subheader", "list", "table"))
+    customStyles = StringField(required=False)
     text = StringField(required=True)
     description = StringField(required=False)
     showDetails = BooleanField(required=False, default=False)
     number = IntField(required=False)
 
 
-def create_tutorial_part(group, text, description, number):
+def create_tutorial_part(group, text, description, number, customStyle):
     part = TutorialPart(group=group, text=text)
     if description:
         part.description = description
@@ -22,6 +23,8 @@ def create_tutorial_part(group, text, description, number):
         part.showDetails = None
     if number:
         part.number = number
+    if customStyle:
+        part.customStyle = customStyle
 
     return part
 
@@ -37,8 +40,8 @@ class Tutorial(EmbeddedDocument):
     tutorialParts = EmbeddedDocumentListField(required=True, document_type=TutorialPart)
 
 
-def create_tutorial(title, name, subtitle, date, description, favorite, tutorialParts):
-    tutorial = Tutorial(title=title, name=name,date=date, description=description, favorite=favorite, tutorialParts=tutorialParts)
+def create_tutorial(title, name, subtitle, date, description, favorite, tutorialParts, order):
+    tutorial = Tutorial(title=title, name=name,date=date, description=description, favorite=favorite, tutorialParts=tutorialParts,order=order)
     if subtitle:
         tutorial.subtitle = subtitle
 
@@ -51,8 +54,8 @@ class Section(Document):
     order = IntField(required=True)
 
 
-def create_section(name, items):
-    section = Section(name=name, items=items)
+def create_section(name, items, order):
+    section = Section(name=name, items=items,order=order)
     return section
 
 
