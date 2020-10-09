@@ -50,7 +50,7 @@
                 >
                     <span
                         class="text-sm-h6 text-md-h5 text-lg-h4 font-italic"
-                    >Why choose Daily Innovation tutorials?</span>
+                    >Why should you choose Daily Innovation tutorials?</span>
                 </v-col>
                 <v-col
                     offset="1"
