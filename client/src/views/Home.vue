@@ -63,7 +63,7 @@
                 >
                     <span
                         class="text-sm-body-2 text-md-body-1"
-                    >While there are many tutorials out there that you can use, Daily Innovation tutorials are written by other students. We have digested all important information and simplified them so beginners can follow along! For the most part, we avoid technical terms and use analogies to help you make sense of things.</span>
+                    >While there are many tutorials out there that you can use, Daily Innovation tutorials are written by fellow students. This means we have digested the important information and simplified them for you by explaining things the way we understood them! For the most part, we avoid technical terms and use analogies to help you make sense of things.</span>
                 </v-col>
             </v-row>
         </v-container>
