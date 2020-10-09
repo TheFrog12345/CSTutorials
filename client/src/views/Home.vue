@@ -48,9 +48,13 @@
                     offset-md="1"
                     cols="3"
                 >
-                    <span
-                        class="text-sm-h6 text-md-h5 text-lg-h4 font-italic"
-                    >Why choose Daily Innovation tutorials?</span>
+                    <div
+                        style="display: flex; flex-direction: column; justify-content: center; height: 100%;"
+                    >
+                        <span
+                            class="text-sm-h6 text-md-h5 text-lg-h4 font-italic"
+                        >Why choose Daily Innovation tutorials?</span>
+                    </div>
                 </v-col>
                 <v-col
                     offset="1"
