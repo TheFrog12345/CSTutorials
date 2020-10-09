@@ -50,9 +50,7 @@
                                 I hope to make a positive impact using my skills on technology!
                             `,
                             `
-                                When I'm not programming, I play sports, mainly racket sports.
-                                I also enjoy listening to music and playing the piano.
-                                Please feel free to contact me anytime!
+                                You can also find my personal website at <a href=https://fred-online-site.netlify.app>fred-online-site.netlify.app</a>.
                             `
                         ],
                         contactIcons: [

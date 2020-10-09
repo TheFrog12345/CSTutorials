@@ -91,8 +91,8 @@
                     class="px-4"
                     v-for="(paragraph, index) in description"
                     :key="index"
+                    v-html="paragraph"
                 >
-                    {{ paragraph }}
                 </p>
             </v-col>
         </v-row>
