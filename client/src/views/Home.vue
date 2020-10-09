@@ -37,7 +37,31 @@
                     />
                 </v-col>
             </v-row>
-            <v-divider class="mt-8"></v-divider>
+        </v-container>
+        <v-container
+            class="mt-4 py-4"
+            fluid
+            :style="{color: '#FFFFFF', backgroundColor: '#2196F3'}"
+        >
+            <v-row class="text-center">
+                <v-col
+                    offset-md="1"
+                    cols="3"
+                >
+                    <span
+                        class="text-sm-h6 text-md-h5 text-lg-h4 font-italic"
+                    >Why choose Daily Innovation tutorials?</span>
+                </v-col>
+                <v-col
+                    offset="1"
+                    cols="8"
+                    md="6"
+                >
+                    <span
+                        class="text-sm-body-2 text-md-body-1"
+                    >While there are many tutorials out there that you can use, Daily Innovation tutorials are written by other students. We have digested all important information and simplified them so beginners can follow along! For the most part, we avoid technical terms and use analogies to help you make sense of things.</span>
+                </v-col>
+            </v-row>
         </v-container>
         <v-container fluid class="mt-8">
             <v-row style="justify-content: center">
