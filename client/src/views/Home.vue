@@ -20,9 +20,6 @@
                 </v-col>
             </v-row>
         </v-img>
-        <v-row style="justify-content: center">
-            <span class="text-body-2 text-sm-subtitle-1" style="padding: 0 50px;">Developer Fred Liu staring out into the vast expanse of hills at Eagle's Nest, Calabogie</span>
-        </v-row>
         <v-container class="mt-4">
             <v-row class="text-center">
                 <v-col
@@ -122,7 +119,7 @@
                     },
                     {
                         question: "Why",
-                        answer: "Here at Daily Innovation, we want to share our knowledge to inspire future innovators. We believe that learning coding gives you many freedoms."
+                        answer: "We want to share our knowledge to inspire future innovators. We believe that learning coding gives you the power to create many great things."
                     }
                 ],
                 recommendationsList: [],
