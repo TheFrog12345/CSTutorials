@@ -56,8 +56,8 @@
                         contactIcons: [
                             {
                                 icon: 'mdi-github',
-                                info: 'TheFrog12345',
-                                link: 'https://github.com/TheFrog12345'
+                                info: 'FredLiu876',
+                                link: 'https://github.com/FredLiu876'
                             },
                             {
                                 icon: 'mdi-email',
