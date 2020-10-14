@@ -3,7 +3,7 @@
         <v-img
             :width="windowWidth"
             :height="windowHeight"
-            src="@/assets/calabogie.jpg"
+            src="@/assets/home.jpg"
         >
             <v-row
                 class="text-center"
@@ -14,9 +14,10 @@
                     offset="1"
                     align-self="center"
                 >
-                    <label class="text-h6 text-sm-h4 text-md-h2 white--text" style="display: block">Coding is a freedom of design</label>
+                    <label class="text-h6 text-sm-h4 text-md-h2 white--text" style="display: block">Learn the fundamentals</label>
                     <br>
-                    <label class="text-body-2 text-sm-h6 white--text" style="display: block">Learn about coding on this website!</label>
+                    <label class="text-body-2 text-sm-h6 white--text" style="display: block">Simple tutorials on important coding concepts</label>
+                    <br><br><br><br><br>
                 </v-col>
             </v-row>
         </v-img>
