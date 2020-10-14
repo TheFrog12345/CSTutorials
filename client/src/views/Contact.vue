@@ -42,7 +42,7 @@
                     {
                         photo: "fred.jpg",
                         name: 'Fred Liu',
-                        role: 'Website UI designer and frontend developer. Tutorial writer.',
+                        role: 'Frontend and backend developer. Tutorial writer.',
                         description: [
                             `
                                 Hello! My name is Fred Liu and I'm going into my first year at the University of Waterloo for a Bachelor of Computer Science.
@@ -74,7 +74,7 @@
                     {
                         photo: "yang.png",
                         name: 'Yang Lu',
-                        role: 'Website UI designer and backend developer. Tutorial writer.',
+                        role: 'Backend developer and tutorial writer.',
                         description: [
                             `Hi there! My name is Yang Lu and I’ll be starting my first year of Computer Engineering at the University of Waterloo in September. I’ve always been passionate about building things and problem-solving and seeing that computer science can be used as a tool to drive my passion, it greatly motivates me to learn more about it. I will use my skills in engineering and computer science to solve problems around me and make the world a better place.`,
                             `In my free time, you can find me playing chess online, relaxing with some video games, or messing around on the piano, among other things. Contact me anytime, I’ll be happy to hear from you!`
