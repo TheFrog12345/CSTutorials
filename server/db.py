@@ -1,7 +1,7 @@
 from mongoengine import *
+import db_uri
 
-db_uri = "mongodb+srv://xinyanglu664:PuWxicgAcLILDAck@tutorialarticles.zotql.mongodb.net/TutorialArticles?retryWrites=true&w=majority"
-connect(host=db_uri)
+connect(host=db_uri.uri)
 
 
 class TutorialPart(EmbeddedDocument):

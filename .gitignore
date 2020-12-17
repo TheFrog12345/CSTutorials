@@ -30,4 +30,5 @@ pnpm-debug.log*
 server/app/__pycache__/*
 
 #Other development files
-change-db.py
+change_db.py
+db_uri.py
