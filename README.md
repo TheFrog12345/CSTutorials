@@ -1,1 +1,1 @@
-Personal blog containing computer science tutorials.
+Website containing computer science tutorials.
