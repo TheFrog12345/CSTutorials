@@ -13,7 +13,7 @@ class TutorialPart(EmbeddedDocument):
     number = IntField(required=False)
 
 
-def create_tutorial_part(group, text, description, number, customStyle):
+def create_tutorial_part(group, text, description, number, customStyles):
     part = TutorialPart(group=group, text=text)
     if description:
         part.description = description
@@ -23,8 +23,8 @@ def create_tutorial_part(group, text, description, number, customStyle):
         part.showDetails = None
     if number:
         part.number = number
-    if customStyle:
-        part.customStyle = customStyle
+    if customStyles:
+        part.customStyles = customStyles
 
     return part
 

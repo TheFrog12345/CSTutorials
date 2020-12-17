@@ -28,4 +28,6 @@ pnpm-debug.log*
 
 #Pycache
 server/app/__pycache__/*
-insert_dictionaries.py
+
+#Other development files
+change-db.py
