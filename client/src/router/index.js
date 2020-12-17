@@ -18,7 +18,7 @@ const routes = [
         component: () => import('../views/Tutorial.vue')
     },
     {
-        path: '/contact',
+        path: '/:page',
         name: 'Contact',
         // lazy loading
         component: () => import('../views/Contact.vue')
